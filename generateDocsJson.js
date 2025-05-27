@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const docsDir = path.resolve(__dirname, 'docs'); // 你的文档目录，改成你自己的
+const publicDocsRoot = path.resolve(__dirname, 'public'); // 改为 public 根目录
+const docsDir = path.resolve(publicDocsRoot, 'docs', 'rendering'); // 实际遍历目录
 const outputFile = path.resolve(__dirname, 'docs.json');
 
 function walkDir(dir, filelist = []) {
@@ -13,11 +14,11 @@ function walkDir(dir, filelist = []) {
       walkDir(filepath, filelist);
     } else {
       if (file.endsWith('.html') || file.endsWith('.md')) {
-        // 生成相对路径，方便前端调用
-        const relPath = path.relative(docsDir, filepath).replace(/\\/g, '/');
+        // 生成基于 public 的相对路径
+        const relPath = path.relative(publicDocsRoot, filepath).replace(/\\/g, '/');
         filelist.push({
           name: file,
-          url: `/docs/${relPath}`
+          url: `/${relPath}`
         });
       }
     }
@@ -28,4 +29,3 @@ function walkDir(dir, filelist = []) {
 const docsList = walkDir(docsDir);
 
 fs.writeFileSync(outputFile, JSON.stringify(docsList, null, 2), 'utf-8');
-console.log(`成功生成 ${outputFile}，共 ${docsList.length} 条文档记录。`);

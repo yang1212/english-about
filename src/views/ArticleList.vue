@@ -220,15 +220,18 @@ export default {
     async loadContent() {
       this.loading = true;
       this.error = null;
+      let jsonPath 
       
       try {
-        // 获取当前路径的内容
-        // const items = await getMarkdownFiles(this.categoryId || '');
-
-        const response = await fetch('/myVedio.json'); 
+        if (this.categoryId === 'hearing') {
+          jsonPath = '/myVedio.json'
+        }
+        if (this.categoryId === 'rendering') {
+          jsonPath = '/rendering.json'
+        }
+        const response = await fetch(`${jsonPath}`); 
         const data = await response.json();
         this.files = data
-        console.log(55, this.files)
       } catch (error) {
         console.error('Error loading content:', error);
         this.error = '加载内容时发生错误，请稍后重试。';

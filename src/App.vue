@@ -21,8 +21,8 @@ export default {
           name: '学习成长',
           isOpen: false,
           categories: [
-            { id: 'english', name: '听力', description: '' },
-            // { id: 'ai', name: '造句翻译', description: '' },
+            { id: 'hearing', name: '听力', description: '' },
+            { id: 'rendering', name: '造句翻译', description: '' },
             // { id: 'ai', name: '问题截图', description: '' }
           ]
         },
