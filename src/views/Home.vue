@@ -2,7 +2,7 @@
   <div class="home" tabindex="0">
     <header class="hero">
       <div class="hero-content">
-        <h1>个人知识库</h1>
+        <h1>英语学习</h1>
         <p class="subtitle">记录学习，分享经验，持续成长</p>
         <div class="search-box">
           <input type="text" placeholder="搜索文章..." v-model="searchQuery">
