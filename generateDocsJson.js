@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const publicDocsRoot = path.resolve(__dirname, 'public'); // 改为 public 根目录
-const docsDir = path.resolve(publicDocsRoot, 'docs', 'rendering'); // 实际遍历目录
+const docsDir = path.resolve(publicDocsRoot, 'docs', 'myVedio2'); // 实际遍历目录
 const outputFile = path.resolve(__dirname, 'docs.json');
 
 function walkDir(dir, filelist = []) {

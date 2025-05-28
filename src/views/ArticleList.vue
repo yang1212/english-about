@@ -222,8 +222,11 @@ export default {
       let jsonPath 
       
       try {
-        if (this.categoryId === 'hearing') {
+        if (this.categoryId === 'myVedio') {
           jsonPath = '/myVedio.json'
+        }
+        if (this.categoryId === 'myVedio2') {
+          jsonPath = '/myVedio2.json'
         }
         if (this.categoryId === 'rendering') {
           jsonPath = '/rendering.json'
@@ -493,6 +496,11 @@ export default {
 }
 
 .category-header {
+  position: fixed;      /* 固定定位 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
   text-align: center;
   margin-bottom: 40px;
   padding: 40px 0;
@@ -504,6 +512,9 @@ export default {
 .category-header h1 {
   font-size: 2.5em;
   margin-bottom: 10px;
+}
+.content {
+  margin-top: 200px;
 }
 
 .loading-state,

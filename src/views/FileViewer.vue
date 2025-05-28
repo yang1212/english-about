@@ -1,7 +1,7 @@
 <template>
   <div class="file-viewer">
     <!-- 面包屑导航 -->
-    <div class="breadcrumb" v-if="breadcrumbs.length > 1">
+    <!-- <div class="breadcrumb" v-if="breadcrumbs.length > 1">
       <router-link 
         v-for="(crumb, index) in breadcrumbs" 
         :key="index"
@@ -11,7 +11,7 @@
         {{ crumb.name }}
         <span v-if="index < breadcrumbs.length - 1" class="separator">/</span>
       </router-link>
-    </div>
+    </div> -->
 
     <div v-if="loading" class="loading-state">
       <i class="fas fa-spinner fa-spin"></i>
@@ -31,17 +31,15 @@
           <h1>{{ displayName }}</h1>
         </div>
         <div class="file-meta">
-          <span class="file-type">{{ fileType }}</span>
-          <div class="print-buttons">
-            <button @click="handleBatchPrint" class="print-btn batch-print-btn" v-if="batchFiles.length > 0">
-              <i class="fas fa-print"></i>
-              批量打印 ({{ batchFiles.length }})
-            </button>
+          <div @click="$router.back()" class="back-btn">
+            返回
+          </div>
+          <!-- <div class="print-buttons">
             <button @click="handlePrint" class="print-btn">
               <i class="fas fa-print"></i>
               打印
             </button>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -139,19 +137,11 @@ export default {
         path: '/'
       }];
       
-      let currentPath = '/category';
       const segments = this.path.split('/');
-      
-      // 移除最后一个（文件名）
-      segments.pop();
-      
-      for (const segment of segments) {
-        currentPath += '/' + segment;
-        crumbs.push({
-          name: segment,
-          path: currentPath
-        });
-      }
+      crumbs.push({
+        name: segments[2],
+        path: `/category/${segments[2]}`
+      });
       
       return crumbs;
     },
@@ -531,6 +521,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   color: #666;
+  position: relative;
 }
 
 .file-type {
@@ -580,13 +571,16 @@ export default {
   background-color: #3aa876;
 }
 
-.batch-print-btn {
-  background-color: #2c3e50;
+.back-btn {
+  background-color: #3aa876;
+  color: #fff;
+  padding: 4px 10px;
+  position: absolute;
+  right: 0px;
+  top: -50px;
+  border-radius: 5px;
 }
 
-.batch-print-btn:hover {
-  background-color: #1a2634;
-}
 
 .file-body {
   padding: 20px;

@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const targetDir = path.resolve(__dirname, 'docs/myVedio'); // 你的目录，改成实际路径
+const targetDir = path.resolve(__dirname, 'public/docs/myVedio2'); // 你的目录，改成实际路径
 
 // 把数字补零到3位
 function padNumber(num) {
