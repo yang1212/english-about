@@ -492,7 +492,7 @@ export default {
 .article-list-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .category-header {
@@ -506,7 +506,8 @@ export default {
   padding: 40px 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 8px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .category-header h1 {
@@ -514,7 +515,7 @@ export default {
   margin-bottom: 10px;
 }
 .content {
-  margin-top: 200px;
+  margin-top: 220px;
 }
 
 .loading-state,
@@ -605,13 +606,13 @@ export default {
     padding: 10px;
   }
 
-  .category-header {
+  /* .category-header {
     padding: 20px 0;
   }
 
   .category-header h1 {
     font-size: 2em;
-  }
+  } */
 }
 
 .folders {
