@@ -30,7 +30,7 @@
         </div>
         <div 
           v-for="file in files" 
-          :key="file.path"
+          :key="file.url"
           class="file-card"
           :class="{ 'selected': isFileSelected(file) }"
           @click="handleFileClick($event, file)"
@@ -161,6 +161,7 @@ export default {
     
     // 获取文件类型显示名称
     getFileType(file) {
+      console.log(111, file)
       const ext = file.name.split('.').pop().toLowerCase();
       const types = {
         md: 'Markdown',
@@ -251,7 +252,7 @@ export default {
 
     // 检查文件是否被选中
     isFileSelected(file) {
-      return this.selectedFiles.some(f => f.path === file.path);
+      return this.selectedFiles.some(f => f.url === file.url);
     },
 
     // 切换文件选择状态
@@ -261,7 +262,7 @@ export default {
         return;
       }
       
-      const index = this.selectedFiles.findIndex(f => f.path === file.path);
+      const index = this.selectedFiles.findIndex(f => f.url === file.url);
       if (index === -1) {
         this.selectedFiles.push(file);
       } else {
@@ -280,7 +281,21 @@ export default {
         this.toggleFileSelection(file);
       }
     },
-
+    waitForPrintWindowReady(printWindow, callback) {
+      const checkReady = () => {
+        try {
+          if (printWindow.document.readyState === 'complete') {
+            callback();
+          } else {
+            setTimeout(checkReady, 100);
+          }
+        } catch (e) {
+          // 如果 printWindow 已关闭或跨域，捕捉错误
+          console.error('打印窗口不可访问:', e);
+        }
+      };
+      checkReady();
+    },
     // 批量打印处理
     async handleBatchPrint() {
       if (this.selectedFiles.length === 0) {
@@ -421,7 +436,7 @@ export default {
       const contentList = await Promise.all(this.selectedFiles.map(async (file) => {
         const fileName = this.getDisplayName(file.name);
         const fileExt = file.name.split('.').pop().toLowerCase();
-        const fileUrl = `${file.path}`;
+        const fileUrl = `${file.url}`;
 
         if (fileExt === 'md') {
           try {
@@ -459,21 +474,28 @@ export default {
       printWindow.document.close();
 
       // 监听窗口加载完成，触发打印
-      printWindow.onload = () => {
-        printWindow.focus(); // 保证窗口获得焦点
+      this.waitForPrintWindowReady(printWindow, () => {
         setTimeout(() => {
+          printWindow.focus();
           printWindow.print();
-        }, 1000);
-        printWindow.onafterprint = () => {
-          printWindow.close();
-        };
-      };
+          printWindow.onafterprint = () => {
+            setTimeout(() => {
+              printWindow.close();
+            }, 500);
+          };
+        }, 300); // 小延迟，确保样式渲染完成
+      });
     },
     async fetchMarkdownFromCDN(path) {
-      const cdnUrl = `https://cdn.jsdelivr.net/gh/yang1212/collection-about@master/${path}`;
-      const res = await fetch(cdnUrl);
-      if (!res.ok) throw new Error('加载失败');
-      return await res.text();
+      try {
+        const res = await fetch(`${path}`);
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        const text = await res.text();
+        return text;
+      } catch (error) {
+        console.error('本地加载失败：', error);
+        throw error;
+      }
     },
   },
   created() {
@@ -500,7 +522,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 2;
   text-align: center;
   margin-bottom: 40px;
   padding: 40px 0;
@@ -780,6 +802,10 @@ export default {
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.2s;
+  position: fixed;
+  width: 160px;
+  top: 0;
+  right: 0;
 }
 
 .batch-print-btn:hover {
