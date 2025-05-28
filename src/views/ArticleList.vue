@@ -29,7 +29,7 @@
           </button>
         </div>
         <div 
-          v-for="(file, index) in files" 
+          v-for="file in files" 
           :key="file.path"
           class="file-card"
           :class="{ 'selected': isFileSelected(file) }"
@@ -39,7 +39,6 @@
             <i class="fas" :class="isFileSelected(file) ? 'fa-check-square' : 'fa-square'"></i>
           </div>
           <router-link 
-            v-show="index !==0"
             :to="getFileRoute(file)"
             class="file-content"
             @click.native.stop
@@ -228,6 +227,7 @@ export default {
         }
         if (this.categoryId === 'rendering') {
           jsonPath = '/rendering.json'
+          console.log(444)
         }
         const response = await fetch(`${jsonPath}`); 
         const data = await response.json();

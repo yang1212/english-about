@@ -28,6 +28,7 @@
                 <i :class="category.icon || 'fas fa-book'"></i>
               </div>
               <h3>{{ category.name }}</h3>
+              <p>{{ category.description }}</p>
             </div>
           </router-link>
         </div>

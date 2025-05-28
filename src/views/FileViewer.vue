@@ -1,7 +1,7 @@
 <template>
   <div class="file-viewer">
     <!-- 面包屑导航 -->
-    <!-- <div class="breadcrumb" v-if="breadcrumbs.length > 1">
+    <div class="breadcrumb" v-if="breadcrumbs.length > 1">
       <router-link 
         v-for="(crumb, index) in breadcrumbs" 
         :key="index"
@@ -11,7 +11,7 @@
         {{ crumb.name }}
         <span v-if="index < breadcrumbs.length - 1" class="separator">/</span>
       </router-link>
-    </div> -->
+    </div>
 
     <div v-if="loading" class="loading-state">
       <i class="fas fa-spinner fa-spin"></i>

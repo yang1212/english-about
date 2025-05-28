@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <nav-bar />
+    <!-- <nav-bar /> -->
     <router-view/>
   </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue'
+// import NavBar from './components/NavBar.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    // NavBar
   },
   data() {
     return {
@@ -21,7 +21,8 @@ export default {
           name: '学习成长',
           isOpen: false,
           categories: [
-            { id: 'hearing', name: '听力', description: '' },
+            { id: 'hearing', name: '听力文档', description: '自己剪的小谢尔顿' },
+            { id: 'hearing1', name: '听力文档', description: '小红书-Sahra每日学英语' },
             { id: 'rendering', name: '造句翻译', description: '' },
             // { id: 'ai', name: '问题截图', description: '' }
           ]
