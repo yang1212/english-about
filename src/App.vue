@@ -23,8 +23,8 @@ export default {
           name: '学习成长',
           isOpen: false,
           categories: [
-            { id: 'myVedio', name: '听力文档', description: '自己剪的小谢尔顿' },
-            { id: 'myVedio2', name: '听力文档', description: '小红书-Sahra每日学英语' },
+            { id: 'myVedio', name: '听力视频/文档整理', description: '小红书账号-不和乔治完的佩奇' },
+            { id: 'myVedio2', name: '文档整理', description: '小红书账号-Sahra每日学英语' },
             { id: 'rendering', name: '造句翻译', description: '' },
             // { id: 'ai', name: '问题截图', description: '' }
           ]
