@@ -1,9 +1,10 @@
 <template>
   <nav class="navbar">
     <div class="nav-content">
-      <router-link to="/" class="logo">
-        <h1>知识库</h1>
-      </router-link>
+      <a href="https://yangfu.asia/#/" class="logo" target="_blank" rel="noopener">
+        <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
+        <h1>个人知识库</h1>
+      </a>
     </div>
   </nav>
 </template>
@@ -25,15 +26,18 @@ export default {
   position: sticky;
   top: 0;
   z-index: 100;
+  position: fixed;
+  width: 100%;
 }
 
 .nav-content {
-  max-width: 1200px;
   margin: 0 auto;
   height: 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 30px;
+  font-weight: bold;
 }
 
 .nav-right {
@@ -51,6 +55,15 @@ export default {
   font-size: 1.5em;
   color: #2c3e50;
   margin: 0;
+  display: inline-block;
+}
+.logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
+  position: relative;
+  top: 8px;
 }
 
 .nav-links {

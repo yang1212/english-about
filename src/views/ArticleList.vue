@@ -27,6 +27,10 @@
             <i class="fas fa-print"></i>
             批量打印 ({{ selectedFiles.length }})
           </button>
+          <button @click="handleBatchCancel" class="batch-cancel-btn">
+            <i class="fas fa-print"></i>
+            取消选择 ({{ selectedFiles.length }})
+          </button>
         </div>
         <div 
           v-for="file in files" 
@@ -486,6 +490,10 @@ export default {
         }, 300); // 小延迟，确保样式渲染完成
       });
     },
+    handleBatchCancel() {
+      this.selectedFiles = [];
+      this.$message.info('已取消选择');
+    },
     async fetchMarkdownFromCDN(path) {
       try {
         const res = await fetch(`${path}`);
@@ -524,12 +532,11 @@ export default {
   right: 0;
   z-index: 2;
   text-align: center;
-  margin-bottom: 40px;
   padding: 40px 0;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 65px auto 0 auto;
 }
 
 .category-header h1 {
@@ -537,7 +544,7 @@ export default {
   margin-bottom: 10px;
 }
 .content {
-  margin-top: 220px;
+  margin-top: 265px;
 }
 
 .loading-state,
@@ -783,7 +790,6 @@ export default {
 
 .batch-actions {
   position: fixed;
-  top: 20px;
   right: 20px;
   z-index: 100;
   display: flex;
@@ -794,7 +800,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   background-color: #42b983;
   color: white;
   border: none;
@@ -803,9 +809,24 @@ export default {
   font-size: 1em;
   transition: background-color 0.2s;
   position: fixed;
-  width: 160px;
-  top: 0;
-  right: 0;
+  top: 90px;
+  right: 10px;
+}
+.batch-cancel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+  position: fixed;
+  top: 140px;
+  right: 10px;
 }
 
 .batch-print-btn:hover {
