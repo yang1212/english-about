@@ -235,7 +235,6 @@ export default {
         }
         if (this.categoryId === 'rendering') {
           jsonPath = '/rendering.json'
-          console.log(444)
         }
         const response = await fetch(`${jsonPath}`); 
         const data = await response.json();

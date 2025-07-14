@@ -494,7 +494,7 @@ export default {
 }
 
 .file-header {
-  padding: 20px;
+  padding: 90px 20px 20px 20px;
   border-bottom: 1px solid #eee;
 }
 
