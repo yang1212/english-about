@@ -3,7 +3,7 @@
     <div class="nav-content">
       <a href="https://yangfu.asia/#/" class="logo" target="_blank" rel="noopener">
         <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
-        <h1>个人知识库</h1>
+        <h1>June</h1>
       </a>
     </div>
   </nav>
