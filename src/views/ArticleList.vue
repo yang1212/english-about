@@ -16,13 +16,8 @@
           <span v-if="index < breadcrumbs.length - 1" class="separator">/</span>
         </router-link>
       </div>
-    </header>
 
-    <div class="content">
-    
-      <!-- 显示文章和其他文件 -->
-      <div class="articles-grid" v-if="files.length > 0">
-        <div class="batch-actions" v-if="selectedFiles.length > 0">
+       <div class="batch-actions">
           <button @click="handleBatchPrint" class="batch-print-btn">
             <i class="fas fa-print"></i>
             批量打印 ({{ selectedFiles.length }})
@@ -32,6 +27,12 @@
             取消选择 ({{ selectedFiles.length }})
           </button>
         </div>
+    </header>
+
+    <div class="content">
+    
+      <!-- 显示文章和其他文件 -->
+      <div class="articles-grid" v-if="files.length > 0">
         <div 
           v-for="file in files" 
           :key="file.url"
@@ -543,7 +544,7 @@ export default {
   margin-bottom: 10px;
 }
 .content {
-  margin-top: 265px;
+  margin-top: 330px;
 }
 
 .loading-state,
@@ -660,6 +661,7 @@ export default {
   transition: transform 0.3s ease;
   display: flex;
   align-items: center;
+  
 }
 
 .folder-card:hover {
@@ -686,6 +688,12 @@ export default {
 .articles-grid {
   display: grid;
   gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 /* 添加面包屑导航样式 */
@@ -720,6 +728,7 @@ export default {
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
   cursor: pointer;
+  width: 49%;
 }
 
 .file-card:hover {
@@ -787,20 +796,13 @@ export default {
   }
 }
 
-.batch-actions {
-  position: fixed;
-  right: 20px;
-  z-index: 100;
-  display: flex;
-  gap: 10px;
-}
 
 .batch-print-btn {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 10px;
-  background-color: #42b983;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
   border-radius: 4px;
@@ -808,8 +810,8 @@ export default {
   font-size: 1em;
   transition: background-color 0.2s;
   position: fixed;
-  top: 90px;
-  right: 10px;
+  top: 290px;
+  right: 270px;
 }
 .batch-cancel-btn {
   display: flex;
@@ -824,11 +826,27 @@ export default {
   font-size: 1em;
   transition: background-color 0.2s;
   position: fixed;
-  top: 140px;
-  right: 10px;
+  top: 290px;
+  right: 120px;
 }
 
 .batch-print-btn:hover {
   background-color: #3aa876;
 }
-</style> 
+
+
+/* 移动端：小于768px 时设置为100% */
+@media (max-width: 768px) {
+  .file-card {
+    width: 100%;
+  }
+  .batch-print-btn {
+    top: 290px;
+    right: 160px;
+  }
+  .batch-cancel-btn {
+    top: 290px;
+    right: 15px;
+  }
+}
+</style>
