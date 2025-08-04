@@ -18,6 +18,10 @@
       </div>
 
        <div class="batch-actions">
+          <button @click="$router.back()" class="batch-return-btn">
+            <i class="fas fa-arrow-left mr-2"></i> 
+            返回
+          </button>
           <button @click="handleBatchPrint" class="batch-print-btn">
             <i class="fas fa-print"></i>
             批量打印 ({{ selectedFiles.length }})
@@ -796,6 +800,12 @@ export default {
   }
 }
 
+.batch-actions {
+  position: fixed;
+  display: flex;
+  padding-top: 50px;
+  padding-left: 20px;
+}
 
 .batch-print-btn {
   display: flex;
@@ -803,31 +813,41 @@ export default {
   gap: 8px;
   padding: 10px 10px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.2s;
-  position: fixed;
-  top: 290px;
-  right: 270px;
+  margin-right: 10px;
 }
 .batch-cancel-btn {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 10px 10px;
-  background-color: #ff6b6b;
-  color: white;
+  background-color: #3a3a3a;
+  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.2s;
-  position: fixed;
-  top: 290px;
-  right: 120px;
+  margin-right: 10px;
+}
+.batch-return-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+  margin-right: 10px;
 }
 
 .batch-print-btn:hover {

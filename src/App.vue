@@ -20,23 +20,24 @@ export default {
       categoryGroups: [
         {
           id: 'learning',
-          name: '学习成长',
+          name: '听力素材',
+          icon: 'fas fa-headphones-alt',
           isOpen: false,
           categories: [
-            { id: 'myVedio', name: '听力视频/文档整理', description: '小红书账号-不和乔治玩的佩奇' },
-            { id: 'myVedio2', name: '文档整理', description: '小红书账号-Sahra每日学英语' },
-            { id: 'rendering', name: '造句翻译', description: '以“时态、句型、高频词”为核心，构造并整理数百条英语例句' },
+            { id: 'myVedio', name: '听力视频/文档整理', description: '小红书账号-不和乔治玩的佩奇', icon: '' },
+            { id: 'myVedio2', name: '文档整理', description: '小红书账号-Sahra每日学英语', icon: ''  },
             // { id: 'ai', name: '问题截图', description: '' }
           ]
         },
-        // {
-        //   id: 'tools',
-        //   name: '工具效率',
-        //   isOpen: false,
-        //   categories: [
-        //     { id: 'dev-tools', name: '开发工具', description: '' },
-        //   ]
-        // }
+        {
+          id: 'tools',
+          name: '高频造句集',
+          icon: 'fas fa-comment-dots',
+          isOpen: false,
+          categories: [
+            { id: 'rendering', name: '造句翻译', description: '以“时态、句型、高频词”为核心，构造并整理数百条英语例句', icon: ''  },
+          ]
+        }
       ]
     }
   },

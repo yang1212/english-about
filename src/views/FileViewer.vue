@@ -496,6 +496,11 @@ export default {
 .file-header {
   padding: 90px 20px 20px 20px;
   border-bottom: 1px solid #eee;
+  position: fixed;
+  background: #fff;
+  height: 150px;
+  width: 68%;
+  z-index: 2;
 }
 
 .file-title {
@@ -577,13 +582,15 @@ export default {
   padding: 4px 10px;
   position: absolute;
   right: 0px;
-  top: -50px;
+  top: -60px;
   border-radius: 5px;
+
 }
 
 
 .file-body {
   padding: 20px;
+  padding-top: 120px;
 }
 
 .markdown-viewer {
@@ -623,6 +630,12 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .file-header {
+    width: 100%;
+  }
+  .back-btn {
+    top: -50px;
+  }
   .file-viewer {
     padding: 10px;
   }
