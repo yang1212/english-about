@@ -1,0 +1,17 @@
+/* 添加 @tailwind base; 导入语句 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义工具类 */
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
+  }
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  .transition-custom {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

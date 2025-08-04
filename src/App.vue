@@ -25,7 +25,7 @@ export default {
           categories: [
             { id: 'myVedio', name: '听力视频/文档整理', description: '小红书账号-不和乔治玩的佩奇' },
             { id: 'myVedio2', name: '文档整理', description: '小红书账号-Sahra每日学英语' },
-            { id: 'rendering', name: '造句翻译', description: '' },
+            { id: 'rendering', name: '造句翻译', description: '以“时态、句型、高频词”为核心，构造并整理数百条英语例句' },
             // { id: 'ai', name: '问题截图', description: '' }
           ]
         },

@@ -1,33 +1,139 @@
 <template>
   <div class="home" tabindex="0">
-    <header class="hero">
-      <div class="hero-content">
-        <h1>英语学习</h1>
-        <p class="subtitle">记录学习，分享经验，持续成长</p>
+
+    <header class="hero bg-gradient-to-br from-primary to-purple-700 py-20 text-white text-center">
+      <div class="max-width-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 tracking-tight leading-tight">
+          提升你的英语水平
+        </h1>
+        <p class="text-[clamp(1rem,2vw,1.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
+          记录学习，分享经验，持续成长。探索我们丰富的学习资源，开启你的英语学习之旅。
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a href="#categories" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            开始学习
+          </a>
+          <a href="#about" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+            了解更多
+          </a>
+        </div>
       </div>
     </header>
 
-    <main class="main-content">
-      <section v-for="group in $root.$data.categoryGroups" :key="group.id" class="category-section">
-        <h2 class="section-title">{{ group.name }}</h2>
-        <div class="category-grid">
-          <router-link
-            v-for="category in group.categories"
-            :key="category.id"
-            :to="'/category/' + category.id"
-            class="category-card"
-          >
-            <div class="card-content">
-              <div class="card-icon">
-                <i :class="category.icon || 'fas fa-book'"></i>
-              </div>
-              <h3>{{ category.name }}</h3>
-              <p>{{ category.description }}</p>
+    <main class="main-content bg-gray-50 py-16">
+      <div class="max-width-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="categories" class="mb-16">
+
+          <div v-for="group in $root.$data.categoryGroups" :key="group.id" class="mb-16">
+            <h3 class="text-2xl font-bold text-dark mb-6 flex items-center">
+              <span class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-3">
+                <i class="fas fa-book"></i>
+              </span>
+              {{ group.name }}
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <router-link
+                v-for="category in group.categories"
+                :key="category.id"
+                :to="'/category/' + category.id"
+                class="category-card group block"
+              >
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  <div class="p-6">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl mb-4 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                      <i :class="category.icon || 'fas fa-book'" class="transition-transform duration-300 group-hover:rotate-12"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ category.name }}</h4>
+                    <p class="text-gray-600 flex-grow">{{ category.description }}</p>
+                  </div>
+                  <div class="mt-auto p-6 pt-0">
+                    <span class="inline-flex items-center text-primary font-medium group-hover:underline">
+                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </div>
+                </div>
+              </router-link>
             </div>
-          </router-link>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        <!-- 添加关于我们部分 -->
+        <section id="about" class="mb-16 bg-white rounded-2xl shadow-sm p-8 md:p-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 class="text-2xl md:text-3xl font-bold text-dark mb-4">关于我们</h2>
+              <p class="text-gray-600 mb-6">English Hub 致力于为英语学习者提供高质量的学习资源和工具。无论你是初学者还是高级学习者，我们都能满足你的需求。</p>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                  <span>专业的英语学习材料</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                  <span>个性化的学习路径</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-secondary mt-1 mr-3"></i>
+                  <span>互动式学习体验</span>
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-xl overflow-hidden shadow-md h-64 md:h-auto bg-gray-100 flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-6xl text-primary/20"></i>
+              <!-- 实际项目中这里会有一张图片 -->
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
+
+    <!-- 新增页脚 -->
+    <footer class="bg-dark text-white py-12 mt-12">
+      <div class="max-width-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <i class="fas fa-book-open text-primary text-2xl"></i>
+              <span class="text-xl font-bold">English Hub</span>
+            </div>
+            <p class="text-gray-400 mb-4">提升你的英语水平，开启全新的世界视野</p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+            <ul class="space-y-2">
+              <li><a href="/" class="text-gray-400 hover:text-white transition-colors duration-200">首页</a></li>
+              <li><a href="#categories" class="text-gray-400 hover:text-white transition-colors duration-200">学习资源</a></li>
+              <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-200">关于我们</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-200">联系方式</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">学习资源</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">语法指南</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">词汇表</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">学习技巧</a></li>
+              <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-200">常见问题</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+            <ul class="space-y-2">
+              <li class="flex items-center text-gray-400"><i class="fas fa-envelope mr-2"></i> tibooyang@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
+          <p>&copy; {{ new Date().getFullYear() }} English Hub. 保留所有权利.</p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -109,9 +215,50 @@ export default {
 </script>
 
 <style scoped>
+/* 移除所有旧样式，替换为以下内容 */
 .home {
   min-height: 100vh;
-  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 确保main内容区域能撑满空间 */
+.main-content {
+  flex: 1;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* 延迟动画 */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
 }
 
 .hero {
@@ -121,6 +268,19 @@ export default {
   text-align: center;
 }
 
+/* 移除其他自定义样式，保留hero部分和响应式调整 */
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 40px 20px;
+  }
+
+  .hero h1 {
+    font-size: 2em;
+  }
+}
+
+/* 保留其他必要的样式 */
 .hero-content {
   max-width: 800px;
   margin: 0 auto;
@@ -250,17 +410,6 @@ export default {
   padding-left: 15px;
 }
 
-.section-title::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 24px;
-  background: #667eea;
-  border-radius: 2px;
-}
 
 .category-grid {
   display: grid;
@@ -455,4 +604,4 @@ export default {
     transform: translate(-50%, 0);
   }
 }
-</style> 
+</style>
