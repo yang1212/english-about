@@ -590,7 +590,7 @@ export default {
 
 .file-body {
   padding: 20px;
-  padding-top: 120px;
+  padding-top: 160px;
 }
 
 .markdown-viewer {

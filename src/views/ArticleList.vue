@@ -548,7 +548,7 @@ export default {
   margin-bottom: 10px;
 }
 .content {
-  margin-top: 330px;
+  margin-top: 360px;
 }
 
 .loading-state,
@@ -817,7 +817,7 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.9em;
   transition: background-color 0.2s;
   margin-right: 10px;
 }
@@ -831,7 +831,7 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.9em;
   transition: background-color 0.2s;
   margin-right: 10px;
 }
@@ -845,7 +845,7 @@ export default {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 1em;
+  font-size: 0.9em;
   transition: background-color 0.2s;
   margin-right: 10px;
 }
