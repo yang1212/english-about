@@ -13,8 +13,8 @@
           <a href="#categories" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
             开始学习
           </a>
-          <a href="#about" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
-            了解更多
+          <a href="https://yangfu.asia/" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+            秘密基地
           </a>
         </div>
       </div>

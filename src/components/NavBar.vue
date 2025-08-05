@@ -14,7 +14,7 @@
       </a> -->
 
       <!-- 右侧：回到主站入口 -->
-      <a href="https://yangfu.asia/#/" class="nav-link main-site-link" target="_blank" rel="noopener">
+      <a href="https://yangfu.asia/" class="nav-link main-site-link" target="_blank" rel="noopener">
         主站<i class="external-icon"></i>
       </a>
     </div>
