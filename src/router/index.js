@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '../views/Home.vue'
 import ArticleList from '../views/ArticleList.vue'
+import ShowList from '../views/ShowList.vue'
 import FileViewer from '../views/FileViewer.vue'
 
 Vue.use(Router)
@@ -18,6 +19,12 @@ export default new Router({
       path: '/category/:categoryId*',
       name: 'ArticleList',
       component: ArticleList,
+      props: true
+    },
+    {
+      path: '/show/:categoryId*',
+      name: 'ShowList',
+      component: ShowList,
       props: true
     },
     {

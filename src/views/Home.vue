@@ -31,7 +31,33 @@
               </span>
               {{ group.name }}
             </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 发音 -->
+            <div v-if="group.id === 'pronunciation'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <router-link
+                v-for="category in group.categories"
+                :key="category.id"
+                :to="'/show/' + category.id"
+                class="category-card group block"
+              >
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  <div class="p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
+                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                      <i :class="category.icon || 'fas fa-book'" class="transition-transform duration-300 group-hover:rotate-12"></i>
+                    </div>
+                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ category.name }}</h4>
+                    <p class="text-gray-600 flex-grow">{{ category.description }}</p>
+                  </div>
+                  <div class="mt-auto p-6 pt-0">
+                    <span class="inline-flex items-center font-medium group-hover:underline">
+                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </div>
+                </div>
+              </router-link>
+            </div>
+
+            <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <router-link
                 v-for="category in group.categories"
                 :key="category.id"
@@ -126,42 +152,6 @@ export default {
       averageTime: 0,
       visitStartTime: null,
       keySequence: '',
-      categoryGroups: [
-        {
-          id: 'learning',
-          name: '听力素材',
-          icon: 'fas fa-headphones-alt',
-          isOpen: false,
-          categories: [
-            {
-              id: 'myVedio',
-              name: '听力视频/文档整理',
-              description: '小红书账号-不和乔治玩的佩奇',
-              icon: 'fas fa-video'
-            },
-            {
-              id: 'myVedio2',
-              name: '文档整理',
-              description: '小红书账号-Sahra每日学英语',
-              icon: 'fas fa-file-alt'
-            }
-          ]
-        },
-        {
-          id: 'tools',
-          name: '高频造句集',
-          icon: 'fas fa-comment-dots',
-          isOpen: false,
-          categories: [
-            {
-              id: 'rendering',
-              name: '造句翻译',
-              description: '以“时态、句型、高频词”为核心，构造并整理数百条英语例句',
-              icon: 'fas fa-language'
-            }
-          ]
-        }
-      ]
     }
   },
   methods: {
