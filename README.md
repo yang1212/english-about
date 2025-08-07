@@ -1,1 +1,1 @@
-https://tool.yangfu.asia/#/
+https://tool.yangfu.asia/
