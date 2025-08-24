@@ -4,10 +4,10 @@
     <header class="hero bg-gradient-to-br from-primary/90 to-indigo-600 py-20 text-white text-center">
       <div class="max-width-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 tracking-tight leading-tight">
-          提升你的英语水平
+          保持期待，就会遇见惊喜
         </h1>
         <p class="text-[clamp(1rem,2vw,1.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
-          永远相信美好的事情即将发生~
+          🌴 永远相信美好的事情即将发生~
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="#categories" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
@@ -27,7 +27,7 @@
           <div v-for="group in $root.$data.categoryGroups" :key="group.id" class="mb-16">
             <h3 class="text-2xl font-bold text-dark mb-6 flex items-center">
               <span class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-secondary/10 text-secondary">
-                <i :class="group.icon || 'fas fa-book'"></i>
+                👺
               </span>
               {{ group.name }}
             </h3>
@@ -95,7 +95,7 @@
               <i class="fas fa-book-open text-primary text-2xl"></i>
               <span class="text-xl font-bold">English Hub</span>
             </div>
-            <p class="text-gray-400 mb-4">提升你的英语水平，开启全新的世界视野</p>
+            <p class="text-gray-400 mb-4">少年驰骋的风，比黄金还贵。</p>
             <div class="flex space-x-4">
               <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200"><i class="fab fa-twitter"></i></a>
