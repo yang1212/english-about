@@ -7,7 +7,7 @@
           提升你的英语水平
         </h1>
         <p class="text-[clamp(1rem,2vw,1.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
-          记录学习，分享经验，持续成长。探索我们丰富的学习资源，开启你的英语学习之旅。
+          永远相信美好的事情即将发生~
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="#categories" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
