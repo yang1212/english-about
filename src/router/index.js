@@ -4,6 +4,8 @@ import HomePage from '../views/Home.vue'
 import ArticleList from '../views/ArticleList.vue'
 import ShowList from '../views/ShowList.vue'
 import FileViewer from '../views/FileViewer.vue'
+// 导入新组件
+import ImgPrint from '../views/ImgPrint.vue'
 
 Vue.use(Router)
 
@@ -31,6 +33,12 @@ export default new Router({
       path: '/file/:path*',
       name: 'FileViewer',
       component: FileViewer,
+      props: true
+    },
+    {
+      path: '/imgPrint',
+      name: 'ImgPrint',
+      component: ImgPrint,
       props: true
     }
   ]

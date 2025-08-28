@@ -1,20 +1,17 @@
 <template>
   <div class="home" tabindex="0">
 
-    <header class="hero bg-gradient-to-br from-primary/90 to-indigo-600 py-20 text-white text-center">
+    <header class="hero bg-gradient-to-br from-primary/90 to-indigo-600 py-25 text-white text-center">
       <div class="max-width-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 tracking-tight leading-tight">
-          保持期待，就会遇见惊喜
+          🌴 保持期待，就会遇见惊喜
         </h1>
-        <p class="text-[clamp(1rem,2vw,1.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
-          🌴 永远相信美好的事情即将发生~
+        <p class="text-[clamp(1rem,2vw,2.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
+          永远相信美好的事情即将发生~
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-          <a href="#categories" class="bg-white text-primary px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+          <a href="#categories" class="bg-white text-primary px-20 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
             开始学习
-          </a>
-          <a href="https://yangfu.asia/" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
-            秘密基地
           </a>
         </div>
       </div>

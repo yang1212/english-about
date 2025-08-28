@@ -18,23 +18,23 @@
       </div>
 
        <div class="batch-actions">
-          <button @click="$router.back()" class="batch-return-btn">
-            <i class="fas fa-arrow-left mr-2"></i> 
-            返回
+          <button @click="handleImgPrint" class="batch-print-img-btn">
+            👹文档图片归总
           </button>
           <button @click="handleBatchPrint" class="batch-print-btn">
-            <i class="fas fa-print"></i>
             批量打印 ({{ selectedFiles.length }})
           </button>
-          <button @click="handleBatchCancel" class="batch-cancel-btn">
-            <i class="fas fa-print"></i>
-            取消选择 ({{ selectedFiles.length }})
+          <button @click="handleBatchCancel" class="batch-return-btn">
+            取消
           </button>
+          <button @click="$router.back()" class="batch-return-btn">
+            返回
+          </button>
+  
         </div>
     </header>
-
-    <div class="content">
     
+    <div class="content">
       <!-- 显示文章和其他文件 -->
       <div class="articles-grid" v-if="files.length > 0">
         <div 
@@ -153,6 +153,9 @@ export default {
     }
   },
   methods: {
+    handleImgPrint() {
+      this.$router.push({ name: 'ImgPrint', query: { path: this.currentFullPath } });
+    },
     // 获取文件图标
     getFileIcon(file) {
       const ext = file.name.split('.').pop().toLowerCase();
@@ -549,6 +552,7 @@ export default {
 }
 .content {
   margin-top: 360px;
+  position: relative;
 }
 
 .loading-state,
@@ -696,7 +700,7 @@ export default {
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
-  padding: 0 15px;
+  padding: 0px 15px;
   box-sizing: border-box;
 }
 
@@ -819,6 +823,16 @@ export default {
   cursor: pointer;
   font-size: 0.9em;
   transition: background-color 0.2s;
+  margin-right: 10px;
+}
+.batch-print-img-btn {
+  padding: 10px 10px;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
   margin-right: 10px;
 }
 .batch-cancel-btn {
