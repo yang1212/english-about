@@ -28,7 +28,7 @@
           {{ section1Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section1Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div v-show="section1Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index < 30" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
@@ -65,7 +65,7 @@
           {{ section2Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section2Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div v-show="section2Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 30 && index < 60" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
@@ -100,7 +100,7 @@
           {{ section3Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section3Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div v-show="section3Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 60 && index < 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
@@ -135,7 +135,7 @@
           {{ section4Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div v-show="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 90 && index < 120" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
@@ -170,7 +170,7 @@
           {{ section5Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section5Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div v-show="section5Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 120 && index < 150" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
@@ -205,7 +205,7 @@
           {{ section6Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section6Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+      <div v-show="section6Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 150" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
