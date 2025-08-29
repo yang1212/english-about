@@ -1,29 +1,42 @@
 <template>
-  <div class="img-print-page min-h-screen bg-gray-50 p-4 sm:p-6 md:p-8">
-    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 text-center">图片预览</h1>
+  <div class="img-print-page min-h-screen bg-gray-50 flex flex-col">
+    <!-- 页面标题区域（非header） -->
+    <div class="bg-white py-4 px-4 sm:px-6" style="padding-top: 100px">
+      <div class="container mx-auto flex items-center justify-between">
+        <button
+          @click="goBack"
+          class="back-btn"
+        >
+          返回
+        </button>
+      </div>
+    </div>
 
-    <!-- 图片网格 -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-      <!-- 第1-30篇 -->
-      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2">
-        <span>🌵 第1-30篇</span>
+    <!-- 主要内容区域 -->
+    <div class="flex-grow container mx-auto px-4 py-8">
+      <!-- 其他内容区块 -->
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-2 border-b border-gray-200 pb-1">
+        <span class="flex items-center">
+          <i class="fas fa-images text-blue-500 mr-2"></i>
+          第1-30篇
+        </span>
         <button
           @click="section1Expanded = !section1Expanded"
-          class="flex items-center text-blue-600 hover:text-blue-800"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
         >
           <i :class="section1Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
           {{ section1Expanded ? '收起' : '展开' }}
         </button>
       </div>
       <div v-if="section1Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-        <div v-for="(image, index) in images" :key="index" v-show="index < 30" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div v-for="(image, index) in images" :key="index" v-show="index < 30" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
-              <i class="fas fa-image text-gray-300 text-3xl"></i>
+              <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
               <!-- 图片将通过JS动态加载 -->
             </div>
-            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-              <span class="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
                 <i class="fas fa-search-plus text-xl"></i>
               </span>
             </div>
@@ -32,31 +45,34 @@
               <i class="fas fa-image text-gray-400 text-3xl"></i>
             </div>
           </div>
-          <div class="p-2 sm:p-3">
+          <div class="p-2 sm:p-3 bg-white">
             <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
           </div>
         </div>
       </div>
 
-      <!-- 第31-60篇 -->
-      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2">
-        <span>🌵 第31-60篇</span>
+      <!-- 其他内容区块 -->
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
+        <span class="flex items-center">
+          <i class="fas fa-images text-green-500 mr-2"></i>
+          第31-60篇
+        </span>
         <button
           @click="section2Expanded = !section2Expanded"
-          class="flex items-center text-blue-600 hover:text-blue-800"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
         >
           <i :class="section2Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
           {{ section2Expanded ? '收起' : '展开' }}
         </button>
       </div>
       <div v-if="section2Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-        <div v-for="(image, index) in images" :key="index" v-show="index >= 30 && index < 60" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 30 && index < 60" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
-              <i class="fas fa-image text-gray-300 text-3xl"></i>
+              <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
             </div>
-            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-              <span class="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
                 <i class="fas fa-search-plus text-xl"></i>
               </span>
             </div>
@@ -64,31 +80,34 @@
               <i class="fas fa-image text-gray-400 text-3xl"></i>
             </div>
           </div>
-          <div class="p-2 sm:p-3">
+          <div class="p-2 sm:p-3 bg-white">
             <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
           </div>
         </div>
       </div>
 
-      <!-- 第61-90篇 -->
-      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2">
-        <span>🌵 第61-90篇</span>
+      <!-- 其他内容区块 -->
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
+        <span class="flex items-center">
+          <i class="fas fa-images text-purple-500 mr-2"></i>
+          第61-90篇
+        </span>
         <button
           @click="section3Expanded = !section3Expanded"
-          class="flex items-center text-blue-600 hover:text-blue-800"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
         >
           <i :class="section3Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
           {{ section3Expanded ? '收起' : '展开' }}
         </button>
       </div>
       <div v-if="section3Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-        <div v-for="(image, index) in images" :key="index" v-show="index >= 60 && index < 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 60 && index < 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
-              <i class="fas fa-image text-gray-300 text-3xl"></i>
+              <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
             </div>
-            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-              <span class="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
                 <i class="fas fa-search-plus text-xl"></i>
               </span>
             </div>
@@ -96,31 +115,34 @@
               <i class="fas fa-image text-gray-400 text-3xl"></i>
             </div>
           </div>
-          <div class="p-2 sm:p-3">
+          <div class="p-2 sm:p-3 bg-white">
             <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
           </div>
         </div>
       </div>
 
-      <!-- 第91-120篇 -->
-      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2">
-        <span>🌵 第91-120篇</span>
+      <!-- 其他内容区块 -->
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
+        <span class="flex items-center">
+          <i class="fas fa-images text-orange-500 mr-2"></i>
+          第91-120篇
+        </span>
         <button
           @click="section4Expanded = !section4Expanded"
-          class="flex items-center text-blue-600 hover:text-blue-800"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
         >
           <i :class="section4Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
           {{ section4Expanded ? '收起' : '展开' }}
         </button>
       </div>
-      <div v-if="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:col-span-4 lg:col-span-5 gap-3 sm:gap-4">
-        <div v-for="(image, index) in images" :key="index" v-show="index >= 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+      <div v-if="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
-              <i class="fas fa-image text-gray-300 text-3xl"></i>
+              <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
             </div>
-            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-              <span class="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
                 <i class="fas fa-search-plus text-xl"></i>
               </span>
             </div>
@@ -128,7 +150,7 @@
               <i class="fas fa-image text-gray-400 text-3xl"></i>
             </div>
           </div>
-          <div class="p-2 sm:p-3">
+          <div class="p-2 sm:p-3 bg-white">
             <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
           </div>
         </div>
@@ -170,6 +192,11 @@
           <i class="fas fa-chevron-right text-2xl"></i>
         </button>
 
+        <!-- 图片信息 -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black bg-opacity-70 text-white px-4 py-2 rounded-full text-sm z-10">
+          {{ currentIndex + 1 }} / {{ images.length }}
+        </div>
+
         <!-- 图片容器 -->
         <div class="flex items-center justify-center min-h-[80vh] p-4 w-full">
           <div class="relative" style="max-width: 100%; max-height: 80vh;">
@@ -201,7 +228,7 @@ export default {
       section3Expanded: true,
       section4Expanded: true,
       observer: null
-    }
+    };
   },
   mounted() {
     this.loadAllImages();
@@ -236,7 +263,7 @@ export default {
       // 确保浏览器支持Intersection Observer
       if ('IntersectionObserver' in window) {
         this.observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.isIntersecting) {
               const index = parseInt(entry.target.dataset.index);
               this.loadImage(index, entry.target);
@@ -261,13 +288,13 @@ export default {
         if (!this.observer) return;
 
         // 先取消所有观察
-        document.querySelectorAll('.lazy-image-container').forEach(container => {
+        document.querySelectorAll('.lazy-image-container').forEach((container) => {
           this.observer.unobserve(container);
         });
 
         // 只观察当前展开section中的图片
         const visibleContainers = document.querySelectorAll('.lazy-image-container');
-        visibleContainers.forEach(container => {
+        visibleContainers.forEach((container) => {
           this.observer.observe(container);
         });
       });
@@ -297,7 +324,7 @@ export default {
 
     loadAllVisibleImages() {
       // 回退方案：直接加载所有可见图片
-      document.querySelectorAll('.lazy-image-container').forEach(container => {
+      document.querySelectorAll('.lazy-image-container').forEach((container) => {
         const index = parseInt(container.dataset.index);
         this.loadImage(index, container);
       });
@@ -321,9 +348,14 @@ export default {
         this.currentIndex = newIndex;
         this.currentImage = this.images[newIndex];
       }
+    },
+
+    goBack() {
+      // 返回上一页
+      this.$router.go(-1);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -378,5 +410,15 @@ export default {
   .max-w-6xl {
     max-width: 90vw;
   }
+}
+.back-btn {
+  background-color: #3aa876;
+  color: #fff;
+  padding: 4px 10px;
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  border-radius: 5px;
+  z-index: 2;
 }
 </style>
