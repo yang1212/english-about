@@ -79,6 +79,7 @@
         </div>
       </div>
 
+
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2">
         <span>🌵 第61-90篇</span>
         <button
@@ -114,6 +115,45 @@
           </div> 
         </div>
       </div>
+
+
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2">
+        <span>🌵 第91-120篇</span>
+        <button
+          @click="section4Expanded = !section4Expanded"
+          class="flex items-center text-blue-600 hover:text-blue-800"
+         >
+           <i :class="section4Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
+           {{ section4Expanded ? '收起' : '展开' }}
+        </button>
+      </div>
+      <div v-if="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+          <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
+            <img
+              :src="image.src"
+              alt="图片预览"
+              class="w-full h-full object-cover"
+              :loading="'lazy'"
+              @error="onImageError(index)"
+            >
+            <div class="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+                <i class="fas fa-search-plus text-xl"></i>
+              </span>
+            </div>
+            <!-- 加载错误提示 -->
+            <div v-if="image.error" class="absolute inset-0 bg-gray-100 flex items-center justify-center">
+              <i class="fas fa-image text-gray-400 text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-2 sm:p-3">
+            <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
+          </div> 
+        </div>
+      </div>
+
+
     </div>
 
     <!-- 图片查看器模态框 -->
@@ -179,7 +219,8 @@ export default {
       currentIndex: 0,
       section1Expanded: true,  // 控制第1-30篇的展开状态
       section2Expanded: true,   // 控制第31-60篇的展开状态
-      section3Expanded: true   // 控制第61-90篇的展开状态
+      section3Expanded: true,   // 控制第61-90篇的展开状态
+      section4Expanded: true
     }
   },
   mounted() {
@@ -189,7 +230,7 @@ export default {
   methods: {
     loadAllImages() {
       // 从public/img目录加载001.jpg到020.jpg
-      const imageCount = 90;
+      const imageCount = 120;
       this.images = Array.from({ length: imageCount }, (_, i) => {
         const index = i + 1;
         return {
