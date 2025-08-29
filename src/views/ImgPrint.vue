@@ -136,7 +136,77 @@
         </button>
       </div>
       <div v-if="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-        <div v-for="(image, index) in images" :key="index" v-show="index >= 90" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 90 && index < 120" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
+            <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
+              <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+                <i class="fas fa-search-plus text-xl"></i>
+              </span>
+            </div>
+            <div v-if="image.error" class="absolute inset-0 bg-gray-100 flex items-center justify-center">
+              <i class="fas fa-image text-gray-400 text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-2 sm:p-3 bg-white">
+            <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
+          </div>
+        </div>
+      </div>
+      
+       <!-- 其他内容区块 -->
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
+        <span class="flex items-center">
+          <i class="fas fa-images text-orange-500 mr-2"></i>
+          第121-150篇
+        </span>
+        <button
+          @click="section5Expanded = !section5Expanded"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
+        >
+          <i :class="section5Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
+          {{ section5Expanded ? '收起' : '展开' }}
+        </button>
+      </div>
+      <div v-if="section5Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 120 && index < 150" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
+          <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
+            <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
+              <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
+            </div>
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform hover:scale-110">
+                <i class="fas fa-search-plus text-xl"></i>
+              </span>
+            </div>
+            <div v-if="image.error" class="absolute inset-0 bg-gray-100 flex items-center justify-center">
+              <i class="fas fa-image text-gray-400 text-3xl"></i>
+            </div>
+          </div>
+          <div class="p-2 sm:p-3 bg-white">
+            <p class="text-sm sm:text-base text-gray-700 truncate">{{ image.name }}</p>
+          </div>
+        </div>
+      </div>
+
+       <!-- 其他内容区块 -->
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
+        <span class="flex items-center">
+          <i class="fas fa-images text-orange-500 mr-2"></i>
+          第151-180篇
+        </span>
+        <button
+          @click="section6Expanded = !section6Expanded"
+          class="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200"
+        >
+          <i :class="section6Expanded ? 'fas fa-chevron-up mr-1' : 'fas fa-chevron-down mr-1'"></i>
+          {{ section6Expanded ? '收起' : '展开' }}
+        </button>
+      </div>
+      <div v-if="section6Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+        <div v-for="(image, index) in images" :key="index" v-show="index >= 150" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
             <div ref="imageRefs" :data-index="index" class="lazy-image-container w-full h-full flex items-center justify-center bg-gray-100">
               <i class="fas fa-image text-gray-300 text-3xl transition-opacity duration-300"></i>
@@ -223,10 +293,12 @@ export default {
       showImageViewer: false,
       currentImage: null,
       currentIndex: 0,
-      section1Expanded: true,
-      section2Expanded: true,
-      section3Expanded: true,
-      section4Expanded: true,
+      section1Expanded: false,
+      section2Expanded: false,
+      section3Expanded: false,
+      section4Expanded: false,
+      section5Expanded: false,
+      section6Expanded: false,
       observer: null
     };
   },
@@ -239,6 +311,8 @@ export default {
     this.$watch('section2Expanded', this.observeVisibleImages);
     this.$watch('section3Expanded', this.observeVisibleImages);
     this.$watch('section4Expanded', this.observeVisibleImages);
+    this.$watch('section5Expanded', this.observeVisibleImages);
+    this.$watch('section6Expanded', this.observeVisibleImages);
   },
   beforeDestroy() {
     if (this.observer) {
@@ -247,7 +321,7 @@ export default {
   },
   methods: {
     loadAllImages() {
-      const imageCount = 120;
+      const imageCount = 180;
       this.images = Array.from({ length: imageCount }, (_, i) => {
         const index = i + 1;
         return {
