@@ -17,7 +17,7 @@
       <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-2 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          <i class="fas fa-images text-blue-500 mr-2"></i>
+          🍉
           第1-30篇
         </span>
         <button
@@ -54,7 +54,7 @@
       <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          <i class="fas fa-images text-green-500 mr-2"></i>
+          🍇
           第31-60篇
         </span>
         <button
@@ -89,7 +89,7 @@
       <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          <i class="fas fa-images text-purple-500 mr-2"></i>
+          🍎
           第61-90篇
         </span>
         <button
@@ -124,7 +124,7 @@
       <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          <i class="fas fa-images text-orange-500 mr-2"></i>
+          🍒
           第91-120篇
         </span>
         <button
@@ -159,7 +159,7 @@
        <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          <i class="fas fa-images text-orange-500 mr-2"></i>
+          🍟
           第121-150篇
         </span>
         <button
@@ -194,7 +194,7 @@
        <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          <i class="fas fa-images text-orange-500 mr-2"></i>
+          🍔 
           第151-180篇
         </span>
         <button
@@ -293,7 +293,7 @@ export default {
       showImageViewer: false,
       currentImage: null,
       currentIndex: 0,
-      section1Expanded: false,
+      section1Expanded: true,
       section2Expanded: false,
       section3Expanded: false,
       section4Expanded: false,
