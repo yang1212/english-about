@@ -6,6 +6,7 @@ import ShowList from '../views/ShowList.vue'
 import FileViewer from '../views/FileViewer.vue'
 // 导入新组件
 import ImgPrint from '../views/ImgPrint.vue'
+import Vedio from '../views/Vedio.vue'
 
 Vue.use(Router)
 
@@ -39,6 +40,12 @@ export default new Router({
       path: '/imgPrint',
       name: 'ImgPrint',
       component: ImgPrint,
+      props: true
+    },
+    {
+      path: '/vedio',
+      name: 'Vedio',
+      component: Vedio,
       props: true
     }
   ]

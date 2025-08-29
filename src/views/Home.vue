@@ -6,9 +6,9 @@
         <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 tracking-tight leading-tight">
           🌴 保持期待，就会遇见惊喜
         </h1>
-        <p class="text-[clamp(1rem,2vw,2.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
+        <h2 class="text-[clamp(1rem,2vw,2.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
           永远相信美好的事情即将发生~
-        </p>
+        </h2>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="#categories" class="bg-white text-primary px-20 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
             开始学习
@@ -22,14 +22,100 @@
         <section id="categories" class="mb-16">
 
           <div v-for="group in $root.$data.categoryGroups" :key="group.id" class="mb-16">
-            <h3 class="text-2xl font-bold text-dark mb-6 flex items-center">
-              <span class="w-10 h-10 rounded-full flex items-center justify-center mr-3 bg-secondary/10 text-secondary">
-                👺
-              </span>
+            <h2 class="text-2xl font-bold text-dark mb-6 flex items-center">
+              {{ group.icon }}
               {{ group.name }}
-            </h3>
+            </h2>
+
+            <!--听力-->
+            <div v-if="group.id === 'learning'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <router-link
+                :key="group.categories[0].id"
+                :to="'/vedio'"
+                class="category-card group block"
+              >
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  <div class="p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
+                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                      <span>{{ group.categories[0].icon }}</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[0].name }}</h4>
+                    <p class="text-gray-600 flex-grow">{{ group.categories[0].description }}</p>
+                  </div>
+                  <div class="mt-auto p-6 pt-0">
+                    <span class="inline-flex items-center font-medium group-hover:underline">
+                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </div>
+                </div>
+              </router-link>
+              <router-link
+                :key="group.categories[1].id"
+                :to="'/category/myVedio'"
+                class="category-card group block"
+              >
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  <div class="p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
+                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                      <span>{{ group.categories[1].icon }}</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[1].name }}</h4>
+                    <p class="text-gray-600 flex-grow">{{ group.categories[1].description }}</p>
+                  </div>
+                  <div class="mt-auto p-6 pt-0">
+                    <span class="inline-flex items-center font-medium group-hover:underline">
+                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </div>
+                </div>
+              </router-link>
+              <router-link
+                :key="group.categories[2].id"
+                :to="'/imgPrint'"
+                class="category-card group block"
+              >
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  <div class="p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
+                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                      <span>{{ group.categories[2].icon }}</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[2].name }}</h4>
+                    <p class="text-gray-600 flex-grow">{{ group.categories[2].description }}</p>
+                  </div>
+                  <div class="mt-auto p-6 pt-0">
+                    <span class="inline-flex items-center font-medium group-hover:underline">
+                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </div>
+                </div>
+              </router-link>
+              <router-link
+                :key="group.categories[3].id"
+                :to="'/category/myVedio2'"
+                class="category-card group block"
+              >
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  <div class="p-6">
+                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
+                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                      <span>{{ group.categories[3].icon }}</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[3].name }}</h4>
+                    <p class="text-gray-600 flex-grow">{{ group.categories[3].description }}</p>
+                  </div>
+                  <div class="mt-auto p-6 pt-0">
+                    <span class="inline-flex items-center font-medium group-hover:underline">
+                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
+                    </span>
+                  </div>
+                </div>
+              </router-link>
+            </div>
             <!-- 发音 -->
-            <div v-if="group.id === 'pronunciation'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div v-else-if="group.id === 'pronunciation'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <router-link
                 v-for="category in group.categories"
                 :key="category.id"
@@ -40,7 +126,7 @@
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
                                    bg-blue-100 text-blue-600 group-hover:bg-blue-600">
-                      <i :class="category.icon || 'fas fa-book'" class="transition-transform duration-300 group-hover:rotate-12"></i>
+                      <span>{{ category.icon }}</span>
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ category.name }}</h4>
                     <p class="text-gray-600 flex-grow">{{ category.description }}</p>
@@ -65,7 +151,7 @@
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
                                    bg-blue-100 text-blue-600 group-hover:bg-blue-600">
-                      <i :class="category.icon || 'fas fa-book'" class="transition-transform duration-300 group-hover:rotate-12"></i>
+                      {{category.icon}}
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ category.name }}</h4>
                     <p class="text-gray-600 flex-grow">{{ category.description }}</p>

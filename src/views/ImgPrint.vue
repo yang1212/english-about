@@ -1,16 +1,14 @@
 <template>
   <div class="img-print-page min-h-screen bg-gray-50 flex flex-col">
-    <!-- 页面标题区域（非header） -->
-    <div class="bg-white py-4 px-4 sm:px-6" style="padding-top: 100px">
-      <div class="container mx-auto flex items-center justify-between">
-        <button
-          @click="goBack"
-          class="back-btn"
-        >
-          返回
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm sticky top-0 z-10 transition-all duration-300">
+      <div class="container mx-auto px-4 py-4 flex justify-end" style="
+      padding-top:100px;">
+        <button @click="$router.back()" class="flex justify-end space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+          <span>返回</span>
         </button>
       </div>
-    </div>
+    </header>
 
     <!-- 主要内容区域 -->
     <div class="flex-grow container mx-auto px-4 py-8">

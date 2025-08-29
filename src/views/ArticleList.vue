@@ -18,9 +18,6 @@
       </div>
 
        <div class="batch-actions">
-          <button @click="handleImgPrint" class="batch-print-img-btn">
-            👹文档图片归总
-          </button>
           <button @click="handleBatchPrint" class="batch-print-btn">
             批量打印 ({{ selectedFiles.length }})
           </button>
