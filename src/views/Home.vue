@@ -3,7 +3,7 @@
 
     <header class="hero bg-gradient-to-br from-primary/90 to-indigo-600 py-25 text-white text-center">
       <div class="max-width-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold mb-6 tracking-tight leading-tight">
+        <h1 class="text-[clamp(1.75rem,4vw,3rem)] font-bold mb-6 tracking-tight leading-tight">
           🌴 保持期待，就会遇见惊喜
         </h1>
         <h2 class="text-[clamp(1rem,2vw,2.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
@@ -354,7 +354,7 @@ html {
   }
 
   .hero h1 {
-    font-size: 2em;
+    font-size: 1.8em;
   }
 }
 
@@ -554,7 +554,7 @@ html {
   }
 
   .hero h1 {
-    font-size: 2em;
+    font-size: 1.6em;
   }
 
   .time-display {

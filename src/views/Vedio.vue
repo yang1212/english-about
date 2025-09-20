@@ -24,11 +24,6 @@
               <h2 class="text-xl md:text-2xl font-bold text-gray-800">网盘资源</h2>
             </div>
 
-            <div class="prose max-w-none mb-6 text-gray-700">
-              <p class="mb-4">我用夸克网盘给你分享了「英文」，点击链接或复制整段内容，打开「夸克APP」即可获取。</p>
-              <p class="font-mono bg-gray-100 px-3 py-2 rounded-md inline-block mb-4">/~86c636sxnf~:/</p>
-            </div>
-
             <!-- 链接卡片 -->
             <a href="https://pan.quark.cn/s/fce27ea7d9ae" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
               <div class="flex items-center justify-between">
@@ -40,6 +35,16 @@
               <p class="text-sm text-blue-600 mt-1 truncate">https://pan.quark.cn/s/fce27ea7d9ae</p>
             </a>
 
+             <a href="https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
+              <div class="flex items-center justify-between">
+                <span class="text-blue-700 font-medium truncate group-hover:underline">百度网盘链接</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+              <p class="text-sm text-blue-600 mt-1 truncate">https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic</p>
+            </a>
+            
             <!-- 视频说明 -->
             <div class="bg-gray-50 rounded-lg p-4 mb-6">
               <ul class="space-y-2 text-gray-700">
