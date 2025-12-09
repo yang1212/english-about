@@ -3,15 +3,15 @@
 
     <header class="hero bg-gradient-to-br from-primary/90 to-indigo-600 py-25 text-white text-center">
       <div class="max-width-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-[clamp(1.75rem,4vw,3rem)] font-bold mb-6 tracking-tight leading-tight">
-          🌴 保持期待，就会遇见惊喜
+        <h1 class="font-bold mb-6 tracking-tight leading-tight">
+          🌴 Keep looking forward
         </h1>
-        <h2 class="text-[clamp(1rem,2vw,2.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
-          Always believe that beautiful things are about to happen~
+        <h2 class="mb-10 max-w-2xl mx-auto" style="font-size: 1.5rem;">
+          You'll find pleasant surprises~
         </h2>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="#categories" class="bg-white text-primary px-20 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-            开始学习
+            Start
           </a>
         </div>
       </div>
@@ -20,7 +20,6 @@
     <main class="main-content bg-gray-50 py-16">
       <div class="max-width-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <section id="categories" class="mb-16">
-
           <div v-for="group in $root.$data.categoryGroups" :key="group.id" class="mb-16">
             <h2 class="text-2xl font-bold text-dark mb-6 flex items-center">
               {{ group.icon }}
@@ -38,7 +37,7 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
                       <span>{{ group.categories[0].icon }}</span>
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[0].name }}</h4>
@@ -60,7 +59,7 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
                       <span>{{ group.categories[1].icon }}</span>
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[1].name }}</h4>
@@ -82,7 +81,7 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
                       <span>{{ group.categories[2].icon }}</span>
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[2].name }}</h4>
@@ -104,7 +103,7 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
                       <span>{{ group.categories[3].icon }}</span>
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[3].name }}</h4>
@@ -129,7 +128,7 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
                       <span>{{ category.icon }}</span>
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ category.name }}</h4>
@@ -156,7 +155,7 @@
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
                   <div class="p-6">
                     <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-blue-600">
+                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
                       {{category.icon}}
                     </div>
                     <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ category.name }}</h4>
@@ -346,7 +345,7 @@ html {
 }
 
 .hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #764ba2;
   padding: 80px 20px;
   color: white;
   text-align: center;
