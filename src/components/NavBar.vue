@@ -24,7 +24,7 @@ export default {
 
 <style scoped>
 .navbar {
-  background: #764ba2;
+  background: #9154cf;
   padding: 0 30px;
   position: sticky;
   top: 0;

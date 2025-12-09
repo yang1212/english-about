@@ -345,7 +345,7 @@ html {
 }
 
 .hero {
-  background: #764ba2;
+  background: #9154cf;
   padding: 80px 20px;
   color: white;
   text-align: center;

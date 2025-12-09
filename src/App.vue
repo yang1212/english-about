@@ -4,16 +4,19 @@
     <keep-alive>
       <router-view/>
     </keep-alive>
+    <scroll-to-top />
   </div>
 </template>
 
 <script>
 import NavBar from './components/NavBar.vue'
+import ScrollToTop from './components/ScrollToTop.vue'
 
 export default {
   name: 'App',
   components: {
-    NavBar
+    NavBar,
+    ScrollToTop
   },
   data() {
     return {

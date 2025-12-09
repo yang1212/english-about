@@ -670,7 +670,7 @@ export default {
   align-items: center;
   gap: 8px;
   padding: 10px 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #955ecc;
   color: #fff;
   border: none;
   border-radius: 4px;
