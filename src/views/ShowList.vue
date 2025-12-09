@@ -1,6 +1,6 @@
 <template>
   <div class="article-list-page">
-    <header class="category-header bg-gradient-to-r from-indigo-500 to-purple-600">
+    <!-- <header class="category-header bg-gradient-to-r from-indigo-500 to-purple-600">
       <h1>{{ currentCategory.name }}</h1>
       <p>{{ currentCategory.description }}</p>
       <div class="batch-actions">
@@ -8,7 +8,7 @@
           <i class="fas fa-arrow-left mr-2"></i> 返回
         </button>
       </div>
-    </header>
+    </header> -->
 
     <div class="content">
 
@@ -228,7 +228,7 @@ export default {
   margin-bottom: 10px;
 }
 .content {
-  margin-top: 360px;
+  margin-top: 60px;
 }
 
 .loading-state,

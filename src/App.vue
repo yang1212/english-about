@@ -21,32 +21,32 @@ export default {
         {
           id: 'learning',
           name: '听力素材',
-          icon: '👹',
+          icon: '🌵',
           isOpen: false,
           categories: [
             {
               id: 'vedio',
               name: '视频资源',
               description: '小红书账号-不和乔治玩的佩奇',
-              icon: '🐸'
+              icon: '🌼'
             },
             {
               id: 'myVedio',
-              name: '文档整理',
-              description: '小红书账号-不和乔治玩的佩奇',
-              icon: '🐤'
+              name: '文本整理',
+              description: '基于视频资源的文本整理',
+              icon: '🌼'
             },
             {
               id: 'source2',
-              name: '打印文档合集',
-              description: '小红书账号-不和乔治玩的佩奇',
-              icon: '🐛'
+              name: '打印文本',
+              description: '基于文本整理的打印版本',
+              icon: '🌼'
             },
             {
               id: 'myVedio2',
-              name: '文档整理',
+              name: '文本整理',
               description: '小红书账号-Sahra每日学英语',
-              icon: '🐊'
+              icon: '🌼'
             }
           ]
         },
@@ -60,21 +60,21 @@ export default {
               id: 'rendering',
               name: '造句翻译',
               description: '以“时态、句型、高频词”为核心，构造并整理数百条英语例句',
-              icon: '🌀'
+              icon: '🌼'
             }
           ]
         },
         {
           id: 'pronunciation',
           name: '发音',
-          icon: '🏂',
+          icon: '🌵',
           isOpen: false,
           categories: [
             {
               id: 'pronunciation1',
               name: '英语趣配音',
               description: '看视频+跟读配音：选取美剧、动画、电影、演讲片段，进行角色扮演式配音',
-              icon: '🌻'
+              icon: '🌼'
             },
             {
               id: 'pronunciation2',

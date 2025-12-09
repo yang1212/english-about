@@ -1,18 +1,5 @@
 <template>
   <div class="file-viewer">
-    <!-- 面包屑导航 -->
-    <!-- <div class="breadcrumb" v-if="breadcrumbs.length > 1">
-      <router-link 
-        v-for="(crumb, index) in breadcrumbs" 
-        :key="index"
-        :to="crumb.path"
-        class="breadcrumb-item"
-      >
-        {{ crumb.name }}
-        <span v-if="index < breadcrumbs.length - 1" class="separator">/</span>
-      </router-link>
-    </div> -->
-
     <div v-if="loading" class="loading-state">
       <i class="fas fa-spinner fa-spin"></i>
       <span>加载中...</span>
@@ -34,12 +21,6 @@
           <div @click="$router.back()" class="back-btn">
             返回
           </div>
-          <!-- <div class="print-buttons">
-            <button @click="handlePrint" class="print-btn">
-              <i class="fas fa-print"></i>
-              打印
-            </button>
-          </div> -->
         </div>
       </div>
 

@@ -1,21 +1,9 @@
 <template>
   <div class="article-list-page min-h-screen bg-gray-50 font-sans">
-    <!-- 顶部导航栏 -->
-    <header class="bg-white shadow-sm sticky top-0 z-10 transition-all duration-300">
-      <div class="container mx-auto px-4 py-4 flex justify-end" style="
-      padding-top:100px;">
-        <button @click="$router.back()" class="flex justify-end space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
-          <span>返回</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- 主要内容区 -->
     <main class="container mx-auto px-4 py-8 max-w-4xl">
-      <!-- 资源卡片区域 -->
       <div class="space-y-10">
         <!-- 网盘资源卡片 -->
-        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+        <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg" style="margin-top:30px">
           <div class="p-6 md:p-8">
             <div class="flex items-center mb-6">
               <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
@@ -24,18 +12,7 @@
               <h2 class="text-xl md:text-2xl font-bold text-gray-800">网盘资源</h2>
             </div>
 
-            <!-- 链接卡片 -->
-            <a href="https://pan.quark.cn/s/fce27ea7d9ae" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
-              <div class="flex items-center justify-between">
-                <span class="text-blue-700 font-medium truncate group-hover:underline">夸克网盘链接</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </div>
-              <p class="text-sm text-blue-600 mt-1 truncate">https://pan.quark.cn/s/fce27ea7d9ae</p>
-            </a>
-
-             <a href="https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
+            <a href="https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
               <div class="flex items-center justify-between">
                 <span class="text-blue-700 font-medium truncate group-hover:underline">百度网盘链接</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +41,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>20-200集：第1分钟/盲听，第2分钟/英文字幕，第3分钟/中英文字幕</span>
+                  <span>20-300集：第1分钟/盲听，第2分钟/英文字幕，第3分钟/中英文字幕 （持续更新中）</span>
                 </li>
               </ul>
             </div>
@@ -87,7 +64,7 @@
             </div>
 
             <div class="prose max-w-none mb-6 text-gray-700">
-              <p class="text-pink-600 font-medium mb-4">互关才能看到后面的更新~</p>
+              <p class="text-pink-600 font-medium mb-4">流量太好了，怕版权方告我，后面的更新设置了互关才能看到~</p>
             </div>
 
             <!-- 小红书链接 -->

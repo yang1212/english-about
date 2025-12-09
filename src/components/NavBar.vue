@@ -6,13 +6,6 @@
         <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
         <h1>不和乔治玩的佩奇</h1>
       </a>
-
-      <!-- 中央：Logo和标题 -->
-      <!-- <a href="/" class="logo">
-        <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
-        <h1>不和乔治玩的佩奇</h1>
-      </a> -->
-
       <!-- 右侧：回到主站入口 -->
       <a href="https://yangfu.asia/" class="nav-link main-site-link" target="_blank" rel="noopener">
         主站<i class="external-icon"></i>

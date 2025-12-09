@@ -1,22 +1,9 @@
 <template>
   <div class="img-print-page min-h-screen bg-gray-50 flex flex-col">
-    <!-- 顶部导航栏 -->
-    <header class="bg-white shadow-sm sticky top-0 z-10 transition-all duration-300">
-      <div class="container mx-auto px-4 py-4 flex justify-end" style="
-      padding-top:100px;">
-        <button @click="$router.back()" class="flex justify-end space-x-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
-          <span>返回</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- 主要内容区域 -->
     <div class="flex-grow container mx-auto px-4 py-8">
-      <!-- 其他内容区块 -->
-      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-2 border-b border-gray-200 pb-1">
+      <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-2 border-b border-gray-200 pb-1" style="margin-top: 80px;">
         <span class="flex items-center">
-          🍉
-          第1-30篇
+          🌼 第1-30篇
         </span>
         <button
           @click="section1Expanded = !section1Expanded"
@@ -49,11 +36,9 @@
         </div>
       </div>
 
-      <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          🍇
-          第31-60篇
+          🌼 第31-60篇
         </span>
         <button
           @click="section2Expanded = !section2Expanded"
@@ -84,11 +69,9 @@
         </div>
       </div>
 
-      <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          🍎
-          第61-90篇
+          🌼 第61-90篇
         </span>
         <button
           @click="section3Expanded = !section3Expanded"
@@ -119,11 +102,9 @@
         </div>
       </div>
 
-      <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          🍒
-          第91-120篇
+          🌼 第91-120篇
         </span>
         <button
           @click="section4Expanded = !section4Expanded"
@@ -133,6 +114,7 @@
           {{ section4Expanded ? '收起' : '展开' }}
         </button>
       </div>
+
       <div v-show="section4Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 90 && index < 120" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
@@ -154,11 +136,9 @@
         </div>
       </div>
       
-       <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          🍟
-          第121-150篇
+          🌼 第121-150篇
         </span>
         <button
           @click="section5Expanded = !section5Expanded"
@@ -168,6 +148,7 @@
           {{ section5Expanded ? '收起' : '展开' }}
         </button>
       </div>
+
       <div v-show="section5Expanded" class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
         <div v-for="(image, index) in images" :key="index" v-show="index >= 120 && index < 150" class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 group">
           <div class="relative cursor-pointer aspect-square" @click="openImageViewer(index)">
@@ -189,11 +170,9 @@
         </div>
       </div>
 
-       <!-- 其他内容区块 -->
       <div class="col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-5 flex items-center justify-between text-lg font-semibold text-gray-800 mb-2 pt-4 border-b border-gray-200 pb-1">
         <span class="flex items-center">
-          🍔 
-          第151-180篇
+          🌼 第151-180篇
         </span>
         <button
           @click="section6Expanded = !section6Expanded"
@@ -223,7 +202,26 @@
           </div>
         </div>
       </div>
-    </div>
+
+      <div style="margin-top: 50px;">
+        <div class="flex items-center mb-6">
+          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+            <span class="text-blue-600 font-bold text-lg">1</span>
+          </div>
+          <h2 class="text-xl md:text-2xl font-bold text-gray-800">后续篇数图片</h2>
+        </div>
+
+        <a href="https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
+          <div class="flex items-center justify-between">
+            <span class="text-blue-700 font-medium truncate group-hover:underline">百度网盘链接</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </div>
+          <p class="text-sm text-blue-600 mt-1 truncate">https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic</p>
+        </a>
+      </div>  
+     </div>
 
     <!-- 图片查看器模态框 -->
     <div

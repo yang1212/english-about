@@ -55,14 +55,6 @@ export default {
     columns: {
       type: Array,
       required: true,
-      // [{ 
-      //   key: 'name',        // 数据的键名
-      //   title: '姓名',      // 列标题
-      //   sortable: true,     // 是否可排序
-      //   width: '100',       // 列宽度
-      //   fixed: false,       // 是否固定列
-      //   align: 'left'       // 对齐方式
-      // }]
     },
     // 表格数据
     data: {

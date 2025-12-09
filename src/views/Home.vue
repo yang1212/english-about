@@ -7,7 +7,7 @@
           🌴 保持期待，就会遇见惊喜
         </h1>
         <h2 class="text-[clamp(1rem,2vw,2.25rem)] mb-10 max-w-2xl mx-auto text-white/90">
-          永远相信美好的事情即将发生~
+          Always believe that beautiful things are about to happen~
         </h2>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
           <a href="#categories" class="bg-white text-primary px-20 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
@@ -29,6 +29,7 @@
 
             <!--听力-->
             <div v-if="group.id === 'learning'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- 视频资源 -->
               <router-link
                 :key="group.categories[0].id"
                 :to="'/vedio'"
@@ -50,6 +51,7 @@
                   </div>
                 </div>
               </router-link>
+              <!-- 文档合集 -->
               <router-link
                 :key="group.categories[1].id"
                 :to="'/category/myVedio'"
@@ -71,6 +73,7 @@
                   </div>
                 </div>
               </router-link>
+              <!-- 文档图文合集 -->
               <router-link
                 :key="group.categories[2].id"
                 :to="'/imgPrint'"
@@ -92,6 +95,7 @@
                   </div>
                 </div>
               </router-link>
+              <!-- 其他文档合集 -->
               <router-link
                 :key="group.categories[3].id"
                 :to="'/category/myVedio2'"
@@ -140,11 +144,13 @@
               </router-link>
             </div>
 
-            <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 高频造句集 -->
+            <div v-else-if="group.id === 'sentence'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <!-- 造句翻译 -->
               <router-link
                 v-for="category in group.categories"
                 :key="category.id"
-                :to="'/category/' + category.id"
+                :to="'/sentencesList/'"
                 class="category-card group block"
               >
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">

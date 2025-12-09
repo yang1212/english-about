@@ -28,10 +28,6 @@
           >
             <i :class="getFileIcon(file)"></i>
             <h2>{{ getDisplayName(file.name) }}</h2>
-            <!-- <p class="file-meta">
-              <span class="date">{{ formatDate(file.lastModified) }}</span>
-              <span class="file-type">{{ getFileType(file) }}</span>
-            </p> -->
           </router-link>
         </div>
       </div>
@@ -44,12 +40,6 @@ import MarkdownIt from 'markdown-it';
 
 export default {
   name: 'ArticleList',
-  props: {
-    categoryId: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       files: [],
@@ -65,71 +55,7 @@ export default {
       })
     }
   },
-  computed: {
-    // 获取当前完整路径
-    currentFullPath() {
-      return '/category' + (this.categoryId ? '/' + this.categoryId : '');
-    },
-    // 获取当前路径数组
-    pathSegments() {
-      return this.categoryId ? this.categoryId.split('/') : [];
-    },
-    // 生成面包屑导航
-    breadcrumbs() {
-      const crumbs = [{
-        name: '首页',
-        path: '/'
-      }];
-      
-      let path = '/category';
-      for (const segment of this.pathSegments) {
-        path += '/' + segment;
-        crumbs.push({
-          name: this.getDisplayName(segment),
-          path: path
-        });
-      }
-      
-      return crumbs;
-    },
-    currentCategory() {
-      const firstSegment = this.pathSegments[0];
-      if (!firstSegment) {
-        return {
-          name: '所有分类',
-          description: '浏览所有文章分类'
-        };
-      }
-
-      // 遍历所有分类组查找匹配的分类
-      for (const group of this.$root.$data.categoryGroups) {
-        const category = group.categories.find(cat => cat.id === firstSegment);
-        if (category) {
-          // 如果有子目录，显示完整路径
-          if (this.pathSegments.length > 1) {
-            const subPath = this.pathSegments.slice(1).join(' / ');
-            return {
-              name: `${category.name} / ${subPath}`,
-              description: category.description
-            };
-          }
-          return {
-            name: category.name,
-            description: category.description
-          };
-        }
-      }
-
-      return {
-        name: this.getDisplayName(this.pathSegments[this.pathSegments.length - 1]),
-        description: '浏览当前目录内容'
-      };
-    }
-  },
   methods: {
-    handleImgPrint() {
-      this.$router.push({ name: 'ImgPrint', query: { path: this.currentFullPath } });
-    },
     // 获取文件图标
     getFileIcon(file) {
       const ext = file.name.split('.').pop().toLowerCase();
@@ -143,22 +69,6 @@ export default {
         default: 'fas fa-file'
       };
       return icons[ext] || icons.default;
-    },
-    
-    // 获取文件类型显示名称
-    getFileType(file) {
-      console.log(111, file)
-      const ext = file.name.split('.').pop().toLowerCase();
-      const types = {
-        md: 'Markdown',
-        jpg: '图片',
-        jpeg: '图片',
-        png: '图片',
-        gif: '图片',
-        pdf: 'PDF',
-        default: '文件'
-      };
-      return types[ext] || types.default;
     },
     
     // 获取文件路由
@@ -181,43 +91,11 @@ export default {
         day: 'numeric'
       });
     },
-    
-    // 添加自然排序函数
-    naturalSort(a, b) {
-      const pattern = /(\d+)|(\D+)/g;
-      const ax = [], bx = [];
-      
-      a.name.match(pattern).forEach(item => {
-        ax.push(item.match(/\d+/) ? parseInt(item) : item.toLowerCase());
-      });
-      
-      b.name.match(pattern).forEach(item => {
-        bx.push(item.match(/\d+/) ? parseInt(item) : item.toLowerCase());
-      });
-      
-      for (let i = 0; i < Math.min(ax.length, bx.length); i++) {
-        if (ax[i] !== bx[i]) {
-          return ax[i] > bx[i] ? 1 : -1;
-        }
-      }
-      return ax.length - bx.length;
-    },
-    
     async loadContent() {
       this.loading = true;
       this.error = null;
-      let jsonPath 
-      
       try {
-        if (this.categoryId === 'myVedio') {
-          jsonPath = '/myVedio.json'
-        }
-        if (this.categoryId === 'myVedio2') {
-          jsonPath = '/myVedio2.json'
-        }
-        if (this.categoryId === 'rendering') {
-          jsonPath = '/rendering.json'
-        }
+        const jsonPath = '/rendering.json'
         const response = await fetch(`${jsonPath}`); 
         const data = await response.json();
         this.files = data
@@ -281,7 +159,7 @@ export default {
       };
       checkReady();
     },
-    // 批量打印处理
+    // 批量打印
     async handleBatchPrint() {
       if (this.selectedFiles.length === 0) {
         this.$message.warning('请先选择要打印的文件');
@@ -471,6 +349,7 @@ export default {
         }, 300); // 小延迟，确保样式渲染完成
       });
     },
+    // 取消选择
     handleBatchCancel() {
       this.selectedFiles = [];
       this.$message.info('已取消选择');
@@ -710,7 +589,7 @@ export default {
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
   cursor: pointer;
-  width: 10%;
+  width: 30%;
 }
 
 .file-card:hover {
