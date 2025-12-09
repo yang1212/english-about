@@ -1,17 +1,6 @@
 <template>
   <div class="article-list-page">
-    <!-- <header class="category-header bg-gradient-to-r from-indigo-500 to-purple-600">
-      <h1>{{ currentCategory.name }}</h1>
-      <p>{{ currentCategory.description }}</p>
-      <div class="batch-actions">
-        <button @click="$router.back()" class="batch-return-btn bg-white/20 hover:bg-white/30 text-white transition-colors duration-300">
-          <i class="fas fa-arrow-left mr-2"></i> 返回
-        </button>
-      </div>
-    </header> -->
-
     <div class="content">
-
       <div v-if="categoryId === 'pronunciation1'" class="pronunciation-content max-w-4xl mx-auto px-4 py-8">
         <div class="intro-section mb-12 text-center">
           <h1 class="text-3xl font-bold text-gray-800 mb-4">英语趣配音</h1>

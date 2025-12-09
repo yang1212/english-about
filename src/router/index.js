@@ -54,6 +54,7 @@ export default new Router({
       component: ShowList,
       props: true
     },
+    // 文档内容查看
     {
       path: '/file/:path*',
       name: 'FileViewer',
