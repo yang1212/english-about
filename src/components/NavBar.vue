@@ -6,13 +6,6 @@
         <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
         <h1>不和乔治玩的佩奇</h1>
       </a>
-
-      <!-- 中央：Logo和标题 -->
-      <!-- <a href="/" class="logo">
-        <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
-        <h1>不和乔治玩的佩奇</h1>
-      </a> -->
-
       <!-- 右侧：回到主站入口 -->
       <a href="https://yangfu.asia/" class="nav-link main-site-link" target="_blank" rel="noopener">
         主站<i class="external-icon"></i>
@@ -26,15 +19,12 @@
 
 export default {
   name: 'NavBar',
-  components: {
-  }
 }
 </script>
 
 <style scoped>
 .navbar {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: #9154cf;
   padding: 0 30px;
   position: sticky;
   top: 0;
@@ -61,7 +51,7 @@ export default {
 
 .logo h1 {
   font-size: 1.5em;
-  color: #2c3e50;
+  color: #fff;
   margin: 0 0 0 10px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -77,7 +67,7 @@ export default {
 
 .nav-link {
   text-decoration: none;
-  color: #2c3e50;
+  color: #fff;
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 20px;

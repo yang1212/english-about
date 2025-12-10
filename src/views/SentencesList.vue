@@ -40,12 +40,6 @@ import MarkdownIt from 'markdown-it';
 
 export default {
   name: 'ArticleList',
-  props: {
-    categoryId: {
-      type: String,
-      required: true
-    }
-  },
   data() {
     return {
       files: [],
@@ -77,22 +71,6 @@ export default {
       return icons[ext] || icons.default;
     },
     
-    // 获取文件类型显示名称
-    getFileType(file) {
-      console.log(111, file)
-      const ext = file.name.split('.').pop().toLowerCase();
-      const types = {
-        md: 'Markdown',
-        jpg: '图片',
-        jpeg: '图片',
-        png: '图片',
-        gif: '图片',
-        pdf: 'PDF',
-        default: '文件'
-      };
-      return types[ext] || types.default;
-    },
-    
     // 获取文件路由
     getFileRoute(file) {
       return '/file/' + encodeURIComponent(file.url);
@@ -113,19 +91,11 @@ export default {
         day: 'numeric'
       });
     },
-    
     async loadContent() {
       this.loading = true;
       this.error = null;
-      let jsonPath 
-      
       try {
-        if (this.categoryId === 'myVedio') {
-          jsonPath = '/myVedio.json'
-        }
-        if (this.categoryId === 'myVedio2') {
-          jsonPath = '/myVedio2.json'
-        }
+        const jsonPath = '/rendering.json'
         const response = await fetch(`${jsonPath}`); 
         const data = await response.json();
         this.files = data
@@ -189,7 +159,7 @@ export default {
       };
       checkReady();
     },
-    // 批量打印处理
+    // 批量打印
     async handleBatchPrint() {
       if (this.selectedFiles.length === 0) {
         this.$message.warning('请先选择要打印的文件');
@@ -379,6 +349,7 @@ export default {
         }, 300); // 小延迟，确保样式渲染完成
       });
     },
+    // 取消选择
     handleBatchCancel() {
       this.selectedFiles = [];
       this.$message.info('已取消选择');
@@ -524,6 +495,14 @@ export default {
   .article-list-page {
     padding: 10px;
   }
+
+  /* .category-header {
+    padding: 20px 0;
+  }
+
+  .category-header h1 {
+    font-size: 2em;
+  } */
 }
 
 .folders {
@@ -610,7 +589,7 @@ export default {
   transition: transform 0.2s, box-shadow 0.2s;
   overflow: hidden;
   cursor: pointer;
-  width: 10%;
+  width: 30%;
 }
 
 .file-card:hover {
@@ -648,7 +627,7 @@ export default {
 }
 
 .file-content i {
-  font-size: 1.2em;
+  font-size: 2em;
   color: #42b983;
   margin-bottom: 15px;
 }
@@ -659,6 +638,18 @@ export default {
   color: #2c3e50;
 }
 
+.file-meta {
+  display: flex;
+  justify-content: space-between;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.file-type {
+  background: #f0f2f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
 
 @media (max-width: 768px) {
   .articles-grid {
@@ -679,7 +670,31 @@ export default {
   align-items: center;
   gap: 8px;
   padding: 10px 10px;
-  background: #955ecc;;
+  background: #955ecc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  margin-right: 10px;
+}
+.batch-print-img-btn {
+  padding: 10px 10px;
+  background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-right: 10px;
+}
+.batch-cancel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px;
+  background-color: #3a3a3a;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -703,6 +718,11 @@ export default {
   margin-right: 10px;
 }
 
+.batch-print-btn:hover {
+  background-color: #3aa876;
+}
+
+
 /* 移动端：小于768px 时设置为100% */
 @media (max-width: 768px) {
   .file-card {
@@ -714,6 +734,10 @@ export default {
   .batch-print-btn {
     top: 290px;
     right: 160px;
+  }
+  .batch-cancel-btn {
+    top: 290px;
+    right: 15px;
   }
 }
 </style>
