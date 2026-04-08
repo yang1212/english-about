@@ -58,7 +58,6 @@
       <div v-else class="pronunciation-content max-w-4xl mx-auto px-4 py-8">
          <div class="intro-section mb-12 text-center">
           <h1 class="text-3xl font-bold text-gray-800 mb-4 md:text-4xl">B站：赖世雄音标课</h1>
-          <p class="text-gray-600 text-lg mb-6">😉 我还没有系统学过</p>
         </div>
 
         <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg mb-12">

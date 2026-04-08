@@ -202,25 +202,6 @@
           </div>
         </div>
       </div>
-
-      <div style="margin-top: 50px;">
-        <div class="flex items-center mb-6">
-          <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-4">
-            <span class="text-blue-600 font-bold text-lg">1</span>
-          </div>
-          <h2 class="text-xl md:text-2xl font-bold text-gray-800">后续篇数图片</h2>
-        </div>
-
-        <a href="https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
-          <div class="flex items-center justify-between">
-            <span class="text-blue-700 font-medium truncate group-hover:underline">百度网盘链接</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </div>
-          <p class="text-sm text-blue-600 mt-1 truncate">https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic</p>
-        </a>
-      </div>  
      </div>
 
     <!-- 图片查看器模态框 -->

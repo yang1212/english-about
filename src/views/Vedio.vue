@@ -12,14 +12,14 @@
               <h2 class="text-xl md:text-2xl font-bold text-gray-800">网盘资源</h2>
             </div>
 
-            <a href="https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
+            <a href="https://pan.baidu.com/s/1-woVztzhokYjHBGPZQfCzA?pwd=MQIs" target="_blank" rel="noopener noreferrer" class="block w-full bg-blue-50 border border-blue-100 rounded-lg p-4 mb-6 transition-all duration-300 hover:bg-blue-100 group">
               <div class="flex items-center justify-between">
                 <span class="text-blue-700 font-medium truncate group-hover:underline">百度网盘链接</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </div>
-              <p class="text-sm text-blue-600 mt-1 truncate">https://pan.baidu.com/s/1MNZaTdLkGwpKXRwfOlPq_w?pwd=myic</p>
+              <p class="text-sm text-blue-600 mt-1 truncate">https://pan.baidu.com/s/1-woVztzhokYjHBGPZQfCzA?pwd=MQIs</p>
             </a>
             
             <!-- 视频说明 -->
@@ -61,10 +61,6 @@
                 <span class="text-pink-600 font-bold text-lg">2</span>
               </div>
               <h2 class="text-xl md:text-2xl font-bold text-gray-800">小红书资源</h2>
-            </div>
-
-            <div class="prose max-w-none mb-6 text-gray-700">
-              <p class="text-pink-600 font-medium mb-4">流量太好了，怕版权方告我，后面的更新设置了互关才能看到~</p>
             </div>
 
             <!-- 小红书链接 -->
