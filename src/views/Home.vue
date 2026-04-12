@@ -16,9 +16,64 @@
         </div>
       </div>
     </header>
-
+    
     <main class="main-content bg-gray-50 py-16">
       <div class="max-width-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="premium-content" class="mb-8">
+        <div class="bg-white rounded-2xl shadow-md border border-purple-100 p-6 sm:p-8">
+            <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+              <h2 class="text-2xl font-bold text-dark">
+                <router-link
+                  :to="'/vedio'"
+                  class="hover:text-primary transition-colors"
+                >
+                  精选专区
+                </router-link>
+              </h2>
+              <span class="inline-flex items-center px-3 py-1 rounded-full bg-purple-100 text-purple-700 text-sm font-medium">
+                限时内容
+              </span>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed mb-5">
+              {{ premiumSection.description }}
+            </p>
+
+            <ul class="list-disc pl-5 text-gray-600 space-y-2 mb-6">
+              <li v-for="item in premiumSection.includes" :key="item">{{ item }}</li>
+            </ul>
+
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100">
+              <div class="flex flex-col md:flex-row gap-6 items-start">
+
+                <div class="flex-1 w-full">
+                  <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                    <p class="text-green-700 font-semibold mb-2">百度网盘</p>
+                    <a
+                      :href="premiumSection.driveLink"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-primary break-all hover:underline"
+                    >
+                      {{ premiumSection.driveLink }}
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2">
+                      提示：请复制保存链接，避免失效后找不到资源。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+              <router-link
+                :to="'/vedio'"
+                class="group inline-flex items-center font-medium text-primary hover:underline"
+              >
+                查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-200 group-hover:translate-x-1"></i>
+              </router-link>
+            </div>
+          </div>
+        </section>
         <section id="categories" class="mb-16">
           <div v-for="group in $root.$data.categoryGroups" :key="group.id" class="mb-16">
             <h2 class="text-2xl font-bold text-dark mb-6 flex items-center">
@@ -28,28 +83,6 @@
 
             <!--听力-->
             <div v-if="group.id === 'learning'" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              <!-- 视频资源 -->
-              <router-link
-                :key="group.categories[0].id"
-                :to="'/vedio'"
-                class="category-card group block"
-              >
-                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
-                  <div class="p-6">
-                    <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:text-white transition-all duration-300 
-                                   bg-blue-100 text-blue-600 group-hover:bg-purple-600">
-                      <span>{{ group.categories[0].icon }}</span>
-                    </div>
-                    <h4 class="text-lg font-semibold text-dark mb-2 group-hover:text-primary transition-colors duration-300">{{ group.categories[0].name }}</h4>
-                    <p class="text-gray-600 flex-grow">{{ group.categories[0].description }}</p>
-                  </div>
-                  <div class="mt-auto p-6 pt-0">
-                    <span class="inline-flex items-center font-medium group-hover:underline">
-                      查看更多 <i class="fas fa-arrow-right ml-2 transition-transform duration-300 group-hover:translate-x-1"></i>
-                    </span>
-                  </div>
-                </div>
-              </router-link>
               <!-- 文档合集 -->
               <router-link
                 :key="group.categories[1].id"
@@ -240,6 +273,16 @@ export default {
       averageTime: 0,
       visitStartTime: null,
       keySequence: '',
+      paymentConfirmed: false,
+      premiumSection: {
+        description: '首页新增内容栏目，包含视频资源，文档资源等合集',
+        includes: [
+          '400+ 节视频，持续更新中',
+          '与视频配套的文档资料，持续更新中',
+          '高频口语表达与例句合集'
+        ],
+        driveLink: 'https://pan.baidu.com/s/1-woVztzhokYjHBGPZQfCzA?pwd=MQIs'
+      }
     }
   },
   methods: {
@@ -275,6 +318,9 @@ export default {
       this.averageTime = Math.round(stats.totalTime / stats.totalVisits * 10) / 10;
       
       localStorage.setItem('siteStats', JSON.stringify(stats));
+    },
+    confirmPayment() {
+      this.paymentConfirmed = true;
     }
   },
   created() {

@@ -35,13 +35,13 @@ export default {
             },
             {
               id: 'myVedio',
-              name: '文本整理',
-              description: '基于视频资源的文本整理',
+              name: '视频配套文档',
+              description: '视频资源的文本整理，支持打印',
               icon: '🌼'
             },
             {
               id: 'source2',
-              name: '打印文本',
+              name: '已打印文本',
               description: '基于文本整理的打印版本',
               icon: '🌼'
             },
