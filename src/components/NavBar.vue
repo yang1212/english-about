@@ -4,7 +4,7 @@
       <!-- 左侧：首页入口 -->
       <a href="/" class="nav-link home-link">
         <img src="@/assets/logo.png" alt="Logo" class="logo-img"/>
-        <h1>不和乔治玩的佩奇</h1>
+        <h2>不和乔治玩的佩奇</h2>
       </a>
       <!-- 右侧：回到主站入口 -->
       <a href="https://yangfu.asia/" class="nav-link main-site-link" target="_blank" rel="noopener">
@@ -26,11 +26,11 @@ export default {
 .navbar {
   background: #9154cf;
   padding: 0 30px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
   position: fixed;
-  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .nav-content {
@@ -49,7 +49,7 @@ export default {
   align-items: center;
 }
 
-.logo h1 {
+.home-link h1 {
   font-size: 1.5em;
   color: #fff;
   margin: 0 0 0 10px;
@@ -62,7 +62,7 @@ export default {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #667eea;
+  border: 2px solid rgba(255, 255, 255, 0.35);
 }
 
 .nav-link {
@@ -91,10 +91,10 @@ export default {
 }
 
 .nav-link:hover {
-  color: #667eea;
-  background: rgba(102, 126, 234, 0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  transform: none;
+  box-shadow: none;
 }
 
 @media (max-width: 768px) {
@@ -106,7 +106,7 @@ export default {
     height: 56px;
   }
 
-  .logo h1 {
+  .home-link h1 {
     font-size: 1.2em;
   }
 
@@ -122,7 +122,7 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .logo h1 {
+  .home-link h1 {
     display: none;
   }
 }
