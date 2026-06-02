@@ -86,7 +86,7 @@
               <!-- 文档合集 -->
               <router-link
                 :key="group.categories[1].id"
-                :to="'/category/myVedio'"
+                :to="'/Sheldon'"
                 class="category-card group block"
               >
                 <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
@@ -105,6 +105,7 @@
                   </div>
                 </div>
               </router-link>
+
               <!-- 文档图文合集 -->
               <router-link
                 :key="group.categories[2].id"
@@ -127,6 +128,7 @@
                   </div>
                 </div>
               </router-link>
+              
               <!-- 其他文档合集 -->
               <router-link
                 :key="group.categories[3].id"

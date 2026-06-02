@@ -1,0 +1,819 @@
+<template>
+  <div class="article-list-page">
+    <div class="content">
+      <div class="batch-actions">
+        <button @click="handleBatchCancel" class="batch-return-btn">
+          取消选择
+        </button>
+        <button @click="handleBatchPrint" class="batch-print-btn">
+          批量打印 ({{ selectedFiles.length }})
+        </button>
+      </div>
+      <!-- 显示文章和其他文件 -->
+      <div class="file-groups" v-if="files.length > 0">
+        <div
+          v-for="group in fileGroups"
+          :key="group.index"
+          class="file-group"
+        >
+          <div class="group-header">
+            <span class="group-title">
+              第 {{ group.start }}-{{ group.end }} 篇
+              <span class="group-count">({{ group.files.length }} 个)</span>
+            </span>
+            <button
+              type="button"
+              class="group-toggle"
+              @click="toggleGroup(group.index)"
+            >
+              <i :class="isGroupExpanded(group.index) ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
+              {{ isGroupExpanded(group.index) ? '收起' : '展开' }}
+            </button>
+          </div>
+          <div v-show="isGroupExpanded(group.index)" class="articles-grid">
+            <div
+              v-for="file in group.files"
+              :key="file.url"
+              class="file-card"
+              :class="{ 'selected': isFileSelected(file) }"
+              @click="handleFileClick($event, file)"
+            >
+              <div class="file-selection" @click.stop="toggleFileSelection(file)">
+                <i class="fas" :class="isFileSelected(file) ? 'fa-check-square' : 'fa-square'"></i>
+              </div>
+              <router-link
+                :to="getFileRoute(file)"
+                class="file-content"
+                @click.native.stop
+              >
+                <i :class="getFileIcon(file)"></i>
+                <h2>{{ getDisplayName(file.name) }}</h2>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import MarkdownIt from 'markdown-it';
+
+export default {
+  name: 'SheldonPage',
+  props: {
+    categoryId: {
+      type: String,
+      required: true
+    }
+  },
+  data() {
+    return {
+      files: [],
+      folders: [],
+      loading: false,
+      error: null,
+      selectedFiles: [],
+      expandedGroups: [0],
+      groupSize: 200,
+      md: new MarkdownIt({
+        html: true,
+        linkify: true,
+        typographer: true,
+        breaks: true
+      })
+    }
+  },
+  computed: {
+    fileGroups() {
+      const groups = [];
+      for (let i = 0; i < this.files.length; i += this.groupSize) {
+        const chunk = this.files.slice(i, i + this.groupSize);
+        groups.push({
+          index: groups.length,
+          start: i + 1,
+          end: i + chunk.length,
+          files: chunk
+        });
+      }
+      return groups;
+    }
+  },
+  methods: {
+    // 获取文件图标
+    getFileIcon(file) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      const icons = {
+        md: 'fas fa-file-alt',
+        jpg: 'fas fa-image',
+        jpeg: 'fas fa-image',
+        png: 'fas fa-image',
+        gif: 'fas fa-image',
+        pdf: 'fas fa-file-pdf',
+        default: 'fas fa-file'
+      };
+      return icons[ext] || icons.default;
+    },
+    
+    // 获取文件类型显示名称
+    getFileType(file) {
+      console.log(111, file)
+      const ext = file.name.split('.').pop().toLowerCase();
+      const types = {
+        md: 'Markdown',
+        jpg: '图片',
+        jpeg: '图片',
+        png: '图片',
+        gif: '图片',
+        pdf: 'PDF',
+        default: '文件'
+      };
+      return types[ext] || types.default;
+    },
+    
+    // 获取文件路由
+    getFileRoute(file) {
+      return '/file/' + encodeURIComponent(file.url);
+    },
+    
+    // 获取显示名称（去掉序号和扩展名）
+    getDisplayName(fileName) {
+      return fileName
+        .replace(/^\d+\s*-\s*/, '') // 移除开头的序号
+        .replace(/\.[^/.]+$/, '');   // 移除扩展名
+    },
+    
+    formatDate(date) {
+      if (!date) return '';
+      return new Date(date).toLocaleDateString('zh-CN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    },
+    
+    async loadContent() {
+      this.loading = true;
+      this.error = null;
+      let jsonPath 
+      
+      try {
+        jsonPath = '/myVedio.json'
+        const response = await fetch(`${jsonPath}`); 
+        const data = await response.json();
+        this.files = data;
+        this.expandedGroups = [0];
+      } catch (error) {
+        console.error('Error loading content:', error);
+        this.error = '加载内容时发生错误，请稍后重试。';
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    // 检查文件是否可以打印
+    isPrintable(file) {
+      const ext = file.name.split('.').pop().toLowerCase();
+      return ['md', 'jpg', 'jpeg', 'png', 'gif', 'webp'].includes(ext);
+    },
+
+    // 检查文件是否被选中
+    isFileSelected(file) {
+      return this.selectedFiles.some(f => f.url === file.url);
+    },
+
+    // 切换文件选择状态
+    toggleFileSelection(file) {
+      if (!this.isPrintable(file)) {
+        this.$message.warning('只能选择 Markdown 文档和图片文件进行打印');
+        return;
+      }
+      
+      const index = this.selectedFiles.findIndex(f => f.url === file.url);
+      if (index === -1) {
+        this.selectedFiles.push(file);
+      } else {
+        this.selectedFiles.splice(index, 1);
+      }
+    },
+
+    // 处理文件卡片点击
+    handleFileClick(event, file) {
+      // 如果点击的是选择框区域，不做任何处理
+      if (event.target.closest('.file-selection')) {
+        return;
+      }
+      // 如果已经有选中的文件，则切换选择状态
+      if (this.selectedFiles.length > 0) {
+        this.toggleFileSelection(file);
+      }
+    },
+    waitForPrintWindowReady(printWindow, callback) {
+      const checkReady = () => {
+        try {
+          if (printWindow.document.readyState === 'complete') {
+            callback();
+          } else {
+            setTimeout(checkReady, 100);
+          }
+        } catch (e) {
+          // 如果 printWindow 已关闭或跨域，捕捉错误
+          console.error('打印窗口不可访问:', e);
+        }
+      };
+      checkReady();
+    },
+    // 批量打印处理
+    async handleBatchPrint() {
+      if (this.selectedFiles.length === 0) {
+        this.$message.warning('请先选择要打印的文件');
+        return;
+      }
+
+      const printWindow = window.open('', '_blank');
+      console.log('printWindow:', printWindow);
+      
+      // 写入HTML头部
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>批量打印</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css">
+            <style>
+              @media print {
+                * {
+                  color: #000000 !important;
+                  -webkit-print-color-adjust: exact !important;
+                  print-color-adjust: exact !important;
+                  color-adjust: exact !important;
+                }
+                body {
+                  margin: 0;
+                  padding: 10px 20px 0px 20px;
+                  font-family: 'Times New Roman', serif !important;
+                }
+                .print-page {
+                  page-break-after: always;
+                  margin-bottom: 0px;
+                }
+                .print-title {
+                  text-align: center;
+                  font-size: 25pt !important;
+                  font-weight: 900 !important;
+                  margin-bottom: 15px !important;
+                  color: rgb(0, 0, 0) !important;
+                  -webkit-text-fill-color: rgb(0, 0, 0) !important;
+                  font-family: 'Times New Roman', serif !important;
+                }
+                .print-content {
+                  width: 100%;
+                  max-width: 100%;
+                  padding: 0 20px !important;
+                  font-size: 35px;
+                }
+                .markdown-content {
+                  font-family: 'Times New Roman', serif !important;
+                  line-height: 1.6;
+                  font-size: 18px !important;
+                }
+                .markdown-content p {
+                  margin: 1em 0;
+                  line-height: 1.6;
+                  font-size: 18px !important;
+                }
+                .markdown-content h1 { font-size: 28px !important; }
+                .markdown-content h2 { font-size: 24px !important; }
+                .markdown-content h3 { font-size: 22px !important; }
+                .markdown-content h4 { font-size: 20px !important; }
+                .markdown-content h5 { font-size: 19px !important; }
+                .markdown-content h6 { font-size: 18px !important; }
+                
+                .markdown-content ul,
+                .markdown-content ol {
+                  margin: 1em 0;
+                  padding-left: 2em;
+                  font-size: 18px !important;
+                }
+                
+                .markdown-content li {
+                  margin: 0.5em 0;
+                  font-size: 18px !important;
+                }
+                
+                .markdown-content pre,
+                .markdown-content code {
+                  font-family: 'Fira Code', Consolas, Monaco, 'Andale Mono', monospace !important;
+                  background-color: #f5f5f5 !important;
+                  padding: 0.2em 0.4em;
+                  border-radius: 3px;
+                  font-size: 16px !important;
+                  line-height: 1.8 !important;
+                  color: #000000 !important;
+                }
+                
+                .markdown-content pre {
+                  padding: 1em;
+                  overflow-x: auto;
+                  margin: 1em 0;
+                }
+                
+                .markdown-content blockquote {
+                  margin: 1em 0;
+                  padding-left: 1em;
+                  border-left: 4px solid #ddd !important;
+                  color: #000000 !important;
+                  font-size: 18px !important;
+                }
+                
+                .markdown-content table {
+                  border-collapse: collapse;
+                  width: 100%;
+                  margin: 1em 0;
+                }
+                
+                .markdown-content th,
+                .markdown-content td {
+                  border: 1px solid #000 !important;
+                  padding: 8px;
+                  text-align: left;
+                  font-size: 18px !important;
+                }
+                
+                .markdown-content th {
+                  background-color: #f5f5f5 !important;
+                  font-weight: bold;
+                }
+                
+                img {
+                  max-width: 100%;
+                  height: auto;
+                  display: block;
+                  margin: 1em auto !important;
+                }
+                @page {
+                  margin: 0.5cm !important;
+                }
+              }
+            </style>
+          </head>
+          <body>
+      `);
+
+      // 创建内容数组，存放所有文件的HTML
+      const contentList = await Promise.all(this.selectedFiles.map(async (file) => {
+        const fileName = this.getDisplayName(file.name);
+        const fileExt = file.name.split('.').pop().toLowerCase();
+        const fileUrl = `${file.url}`;
+
+        if (fileExt === 'md') {
+          try {
+            const content = await this.fetchMarkdownFromCDN(fileUrl);
+            const renderedContent = this.md.render(content);
+            return `
+              <div class="print-page">
+                <div class="print-title">${fileName}</div>
+                <div class="print-content">
+                  <div class="markdown-content">${renderedContent}</div>
+                </div>
+              </div>
+            `;
+          } catch (err) {
+            console.error('拉取出错：', err);
+            return `<div class="print-page"><div class="print-title">${fileName}</div><p>加载失败</p></div>`;
+          }
+        } else if (['jpg', 'jpeg', 'png', 'gif', 'webp'].includes(fileExt)) {
+          return `
+            <div class="print-page">
+              <div class="print-title">${fileName}</div>
+              <div class="print-content">
+                <img src="${fileUrl}" alt="${fileName}">
+              </div>
+            </div>
+          `;
+        }
+        return '';
+      }));
+
+      // 写入所有内容
+      printWindow.document.write(contentList.join(''));
+
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+
+      // 监听窗口加载完成，触发打印
+      this.waitForPrintWindowReady(printWindow, () => {
+        setTimeout(() => {
+          printWindow.focus();
+          printWindow.print();
+          printWindow.onafterprint = () => {
+            setTimeout(() => {
+              printWindow.close();
+            }, 500);
+          };
+        }, 300); // 小延迟，确保样式渲染完成
+      });
+    },
+    handleBatchCancel() {
+      this.selectedFiles = [];
+      this.$message.info('已取消选择');
+    },
+    toggleGroup(index) {
+      const pos = this.expandedGroups.indexOf(index);
+      if (pos === -1) {
+        this.expandedGroups.push(index);
+      } else {
+        this.expandedGroups.splice(pos, 1);
+      }
+    },
+    isGroupExpanded(index) {
+      return this.expandedGroups.includes(index);
+    },
+    async fetchMarkdownFromCDN(path) {
+      try {
+        const res = await fetch(`${path}`);
+        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+        const text = await res.text();
+        return text;
+      } catch (error) {
+        console.error('本地加载失败：', error);
+        throw error;
+      }
+    },
+  },
+  created() {
+    this.loadContent();
+  },
+  watch: {
+    categoryId: {
+      handler: 'loadContent',
+      immediate: true
+    }
+  }
+}
+</script>
+
+<style scoped>
+.article-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.category-header {
+  position: fixed;      /* 固定定位 */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  padding: 0;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  color: white;
+  max-width: 1200px;
+  margin: 65px auto 0 auto;
+}
+
+.category-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+.content {
+  margin-top: 130px;
+  position: relative;
+}
+
+.loading-state,
+.error-state,
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.loading-state i,
+.error-state i,
+.empty-state i {
+  font-size: 2em;
+  margin-bottom: 10px;
+  color: #667eea;
+}
+
+.error-state {
+  color: #dc3545;
+}
+
+.error-state i {
+  color: #dc3545;
+}
+
+.articles {
+  display: grid;
+  gap: 20px;
+}
+
+.article-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+}
+
+.article-content {
+  padding: 20px;
+}
+
+.article-content h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.date {
+  margin-right: 15px;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: #f0f2f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8em;
+}
+
+.article-excerpt {
+  color: #666;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .article-list-page {
+    padding: 10px;
+  }
+}
+
+.folders {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.folder-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  
+}
+
+.folder-card:hover {
+  transform: translateY(-5px);
+}
+
+.folder-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.folder-content i {
+  font-size: 24px;
+  color: #667eea;
+}
+
+.folder-content h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #2c3e50;
+}
+
+.file-groups {
+  padding: 0 15px;
+}
+
+.file-group {
+  margin-bottom: 24px;
+}
+
+.file-group:last-child {
+  margin-bottom: 0;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.group-title {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.group-count {
+  margin-left: 8px;
+  font-size: 0.85em;
+  font-weight: normal;
+  color: #666;
+}
+
+.group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: none;
+  border: none;
+  color: #667eea;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: color 0.2s;
+}
+
+.group-toggle:hover {
+  color: #764ba2;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* 添加面包屑导航样式 */
+.breadcrumb {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.breadcrumb-item {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.separator {
+  margin: 0 8px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.file-card {
+  position: relative;
+  display: flex;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  min-width: 0;
+}
+
+.file-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.file-card.selected {
+  border: 2px solid #42b983;
+}
+
+.file-selection {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 1;
+  padding: 6px;
+  color: #666;
+  font-size: 1.25em;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.file-selection:hover {
+  color: #42b983;
+}
+
+.file-card.selected .file-selection {
+  color: #42b983;
+}
+
+.file-content {
+  flex: 1;
+  padding: 10px 6px;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+}
+
+.file-content i {
+  font-size: 1em;
+  color: #42b983;
+  margin-bottom: 6px;
+}
+
+.file-content h2 {
+  margin: 4px 0 0;
+  font-size: 0.75em;
+  color: #2c3e50;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.batch-actions {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 15px;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.batch-print-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px;
+  background: #955ecc;;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  margin-right: 10px;
+}
+.batch-return-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 10px;
+  background-color: #ccc;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .file-content h2 {
+    font-size: 0.9em;
+  }
+  .batch-actions {
+    padding-right: 15px;
+  }
+}
+</style>

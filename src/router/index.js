@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '../views/Home.vue'
 import ArticleList from '../views/ArticleList.vue'
+import Sheldon from '../views/Sheldon.vue'
 import ShowList from '../views/ShowList.vue'
 import FileViewer from '../views/FileViewer.vue'
 // 导入新组件
@@ -40,6 +41,13 @@ export default new Router({
       component: ArticleList,
       props: true
     },
+    {
+      path: '/Sheldon',
+      name: 'Sheldon',
+      component: Sheldon,
+      props: true
+    },
+
     // 高频造句集
     {
       path: '/sentencesList',
