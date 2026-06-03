@@ -24,13 +24,14 @@ export default {
 
 <style scoped>
 .navbar {
-  background: #9154cf;
+  background: linear-gradient(145deg, #a366d6 0%, #9154cf 42%, #7a46b5 100%);
   padding: 0 30px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 100;
+  border: none;
 }
 
 .nav-content {

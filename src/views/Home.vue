@@ -84,7 +84,6 @@
                 <span class="group-icon">{{ group.icon }}</span>
                 {{ group.name }}
               </h2>
-              <span class="group-count">{{ getCardsForGroup(group).length }} 项</span>
             </div>
 
             <div class="category-grid">
@@ -640,9 +639,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px solid #e2e8f0;
 }
 
 .group-title {
