@@ -25,6 +25,26 @@
       </section>
 
       <div class="page-container content-body" style="margin-top: 20px">
+        <!-- 扫码访问 -->
+        <section class="section-block">
+          <div class="qr-card">
+            <div class="qr-card-body">
+              <span class="section-label">Mobile</span>
+              <h2 class="qr-card-title">手机扫码访问</h2>
+              <p class="qr-card-desc">扫码直接打开网站，免输入网址</p>
+            </div>
+            <div class="qr-card-code">
+              <img
+                src="/code.png"
+                alt="扫码访问 English Hub"
+                class="qr-card-img"
+                width="120"
+                height="120"
+              />
+            </div>
+          </div>
+        </section>
+
         <!-- 精选专区 -->
         <section id="premium-content" class="section-block">
           <div class="premium-card">
@@ -476,6 +496,52 @@ export default {
   margin-bottom: 0;
 }
 
+/* QR card */
+.qr-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.25rem 1.75rem;
+  box-shadow: 0 4px 24px rgba(145, 84, 207, 0.08);
+  border: 1px solid rgba(145, 84, 207, 0.12);
+}
+
+.qr-card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.qr-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.35rem;
+}
+
+.qr-card-desc {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.qr-card-code {
+  flex-shrink: 0;
+}
+
+.qr-card-img {
+  display: block;
+  width: 120px;
+  height: 120px;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  padding: 0.35rem;
+}
+
 /* Premium */
 .premium-card {
   background: #fff;
@@ -872,6 +938,16 @@ export default {
 
   .premium-card {
     padding: 1.25rem;
+  }
+
+  .qr-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  .qr-card-code {
+    align-self: center;
   }
 
   .drive-box {
