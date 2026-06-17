@@ -24,7 +24,7 @@ export default {
         {
           id: 'learning',
           name: '听力素材',
-          icon: '🌵',
+          icon: '',
           isOpen: false,
           categories: [
             {
@@ -56,7 +56,7 @@ export default {
         {
           id: 'sentence',
           name: '高频造句集',
-          icon: '🌵',
+          icon: '',
           isOpen: false,
           categories: [
             {
@@ -70,7 +70,7 @@ export default {
         {
           id: 'pronunciation',
           name: '发音',
-          icon: '🌵',
+          icon: '',
           isOpen: false,
           categories: [
             {

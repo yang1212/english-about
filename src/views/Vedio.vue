@@ -35,7 +35,7 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>第1分钟/盲听，第2分钟/字幕，第3分钟/盲听</span>
+                  <span>第1分钟/盲听，第2分钟/英文字幕，第3分钟/中英字幕</span>
                 </li>
                 <li class="flex items-start">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

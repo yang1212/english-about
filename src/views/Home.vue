@@ -35,7 +35,6 @@
                   <router-link to="/vedio" class="title-link">精选专区</router-link>
                 </h2>
               </div>
-              <span class="badge badge-hot">限时内容</span>
             </div>
 
             <p class="premium-desc">{{ premiumSection.description }}</p>
@@ -222,6 +221,7 @@ export default {
 .main-content {
   flex: 1;
   padding-top: 64px;
+  margin-bottom: 100px;
 }
 
 /* 欢迎区 */
@@ -324,7 +324,6 @@ export default {
   gap: 0.4rem;
   font-size: 2.35rem;
   font-weight: 700;
-  margin: 0 0 0.25rem;
   line-height: 1.25;
   color: #fff;
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
