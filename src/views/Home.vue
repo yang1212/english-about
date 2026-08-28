@@ -467,6 +467,10 @@ export default {
   },
   beforeDestroy() {
     if (this.timer) clearInterval(this.timer)
+    this.clickFishes.forEach(fish => {
+      if (fish.rafId) cancelAnimationFrame(fish.rafId)
+    })
+    this.clickFishes = []
     this.updateStats()
     window.removeEventListener('beforeunload', this.updateStats)
   }
@@ -514,61 +518,7 @@ export default {
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   line-height: 1;
   pointer-events: none;
-  animation: clickFishSwim 2.1s ease-out forwards;
-  will-change: transform, opacity;
-}
-
-@keyframes clickFishSwim {
-  0% {
-    transform: translate(-50%, -50%) scale(0) scaleX(var(--fish-flip, 1)) scaleY(0);
-    opacity: 0;
-  }
-  8% {
-    transform: translate(-50%, -50%) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale))) scaleY(var(--fish-scale)) rotate(var(--fish-rotate));
-    opacity: 1;
-  }
-  18% {
-    transform: translate(
-      calc(-50% + var(--fish-dx) * 0.1),
-      calc(-50% + var(--fish-dy) * 0.06 + var(--fish-wiggle) * 0.35)
-    ) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale))) scaleY(var(--fish-scale)) rotate(calc(var(--fish-rotate) + 12deg));
-    opacity: 1;
-  }
-  32% {
-    transform: translate(
-      calc(-50% + var(--fish-dx) * 0.26),
-      calc(-50% + var(--fish-dy) * 0.2 - var(--fish-wiggle) * 0.45)
-    ) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale))) scaleY(var(--fish-scale)) rotate(calc(var(--fish-rotate) - 10deg));
-    opacity: 1;
-  }
-  48% {
-    transform: translate(
-      calc(-50% + var(--fish-dx) * 0.44),
-      calc(-50% + var(--fish-dy) * 0.36 + var(--fish-wiggle) * 0.4)
-    ) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale))) scaleY(var(--fish-scale)) rotate(calc(var(--fish-rotate) + 9deg));
-    opacity: 1;
-  }
-  64% {
-    transform: translate(
-      calc(-50% + var(--fish-dx) * 0.62),
-      calc(-50% + var(--fish-dy) * 0.52 - var(--fish-wiggle) * 0.3)
-    ) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale) * 0.98)) scaleY(calc(var(--fish-scale) * 0.98)) rotate(calc(var(--fish-rotate) - 7deg));
-    opacity: 0.9;
-  }
-  80% {
-    transform: translate(
-      calc(-50% + var(--fish-dx) * 0.82),
-      calc(-50% + var(--fish-dy) * 0.72 + var(--fish-wiggle) * 0.18)
-    ) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale) * 0.88)) scaleY(calc(var(--fish-scale) * 0.88)) rotate(calc(var(--fish-rotate) + 5deg));
-    opacity: 0.55;
-  }
-  100% {
-    transform: translate(
-      calc(-50% + var(--fish-dx)),
-      calc(-50% + var(--fish-dy))
-    ) scaleX(calc(var(--fish-flip, 1) * var(--fish-scale) * 0.65)) scaleY(calc(var(--fish-scale) * 0.65)) rotate(var(--fish-rotate));
-    opacity: 0;
-  }
+  will-change: transform, left, top, opacity;
 }
 
 /* ── Hero ── */
