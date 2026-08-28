@@ -263,7 +263,7 @@ export default {
         description: '首页新增内容栏目，包含视频资源、文档资源等合集',
         includes: [
           '400+ 节视频，持续更新中',
-          '与视频配套的文档资料，持续更新中',
+          '视频配套的文档资料，持续更新中',
           '高频口语表达与例句合集'
         ],
         driveLink: 'https://pan.baidu.com/s/1-woVztzhokYjHBGPZQfCzA?pwd=MQIs'
@@ -975,7 +975,7 @@ export default {
 .page-container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 0.8rem;
 }
 
 .section-block {
