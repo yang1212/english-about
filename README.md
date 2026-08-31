@@ -1,1 +1,1 @@
-[goodgoodstudy.win](https://goodgoodstudy.win)
+[访问地址：goodgoodstudy.win](https://goodgoodstudy.win/)
