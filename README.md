@@ -1,1 +1,1 @@
-goodgoodstudy.win
+[goodgoodstudy.win](https://goodgoodstudy.win)
